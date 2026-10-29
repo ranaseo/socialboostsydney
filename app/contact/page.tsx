@@ -23,6 +23,7 @@ export default function Contact() {
         <div className="wrap contact">
           <div className="contact-cards">
             <div className="c-card"><h2 className="side-h">Call us</h2><a href={tel}>{site.phoneDisplay}</a></div>
+            <div className="c-card"><h2 className="side-h">WhatsApp</h2><a href={`https://wa.me/${site.whatsapp}`} rel="noopener" target="_blank">{site.whatsappDisplay}</a></div>
             <div className="c-card"><h2 className="side-h">Email</h2><a href={`mailto:${site.email}`}>{site.email}</a></div>
             <div className="c-card">
               <h2 className="side-h">Office</h2>

@@ -349,3 +349,9 @@ p { margin: 0 0 1em; }
   .banner-shape { width: 240px; height: 240px; right: -120px; top: -100px; }
   .brand img { width: 140px; }
 }
+
+/* floating WhatsApp chat */
+.wa-btn { position: fixed; right: 20px; bottom: 20px; z-index: 40; display: flex; align-items: center; gap: 10px; background: #25d366; color: #fff; text-decoration: none; font-weight: 800; font-size: .9rem; padding: 12px; border-radius: 999px; box-shadow: 0 12px 30px rgba(37, 211, 102, .45); transition: transform .2s; }
+.wa-btn:hover { transform: translateY(-3px); }
+.wa-label { padding-right: 8px; }
+@media (max-width: 600px) { .wa-label { display: none; } .wa-btn { right: 16px; bottom: 16px; } }

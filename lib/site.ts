@@ -22,6 +22,8 @@ export const site = {
   },
   geo: { latitude: -33.8688, longitude: 151.2093 },
   hours: "Mo-Fr 09:00-17:30",
+  whatsapp: "8801750423058", // digits only, for wa.me links
+  whatsappDisplay: "+880 1750 423058",
   founder: "Al Rubel Rana",
   sameAs: [
     "https://www.facebook.com/socialboostsydney",
