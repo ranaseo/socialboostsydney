@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import PageBanner from "@/components/PageBanner";
-import { site } from "@/lib/site";
+import { site, waLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Social Boost Sydney | Free Social Media Audit",
@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function Contact() {
-  const tel = `tel:${site.phone.replace(/\s/g, "")}`;
   return (
     <>
       <PageBanner
@@ -22,8 +21,7 @@ export default function Contact() {
       <section className="sec">
         <div className="wrap contact">
           <div className="contact-cards">
-            <div className="c-card"><h2 className="side-h">Call us</h2><a href={tel}>{site.phoneDisplay}</a></div>
-            <div className="c-card"><h2 className="side-h">WhatsApp</h2><a href={`https://wa.me/${site.whatsapp}`} rel="noopener" target="_blank">{site.whatsappDisplay}</a></div>
+                        <div className="c-card"><h2 className="side-h">Call / WhatsApp</h2><a href={waLink()} rel="noopener" target="_blank">{site.phoneDisplay}</a></div>
             <div className="c-card"><h2 className="side-h">Email</h2><a href={`mailto:${site.email}`}>{site.email}</a></div>
             <div className="c-card">
               <h2 className="side-h">Office</h2>

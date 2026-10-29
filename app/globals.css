@@ -355,3 +355,5 @@ p { margin: 0 0 1em; }
 .wa-btn:hover { transform: translateY(-3px); }
 .wa-label { padding-right: 8px; }
 @media (max-width: 600px) { .wa-label { display: none; } .wa-btn { right: 16px; bottom: 16px; } }
+.top-wa { display: inline-flex; align-items: center; gap: 6px; color: #25d366; font-weight: 700; }
+@media (max-width: 600px) { .topbar-in { gap: 14px; font-size: .75rem; } }

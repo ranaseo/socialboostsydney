@@ -3,11 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Cta from "@/components/Cta";
 import FaqList from "@/components/FaqList";
-import { Arrow, Check, Phone, icons } from "@/components/Icons";
+import { Arrow, Check, WhatsApp, icons } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import PageBanner from "@/components/PageBanner";
 import { faqSchema, serviceSchema } from "@/lib/schema";
-import { services, site, steps } from "@/lib/site";
+import { services, site, steps, waLink } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -79,7 +79,7 @@ export default async function ServicePage({ params }: Props) {
               <img src="/brand/icon-plain.svg" alt="" width={64} height={64} />
               <h2 className="side-h">Need help with {s.name}?</h2>
               <p>Get a free audit and a clear plan for your business.</p>
-              <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="side-phone"><Phone /> {site.phoneDisplay}</a>
+              <a href={waLink(`Hi, I need help with ${s.name}.`)} target="_blank" rel="noopener" className="side-phone"><WhatsApp size={22} /> {site.phoneDisplay}</a>
               <Link href="/contact/" className="btn btn-dark">Book Free Audit</Link>
             </div>
           </aside>

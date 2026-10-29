@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { services, site } from "@/lib/site";
-import { Phone } from "./Icons";
+import { services, site, waLink } from "@/lib/site";
+import { WhatsApp } from "./Icons";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -10,7 +10,6 @@ const nav = [
   { href: "/contact/", label: "Contact" },
 ];
 
-const tel = `tel:${site.phone.replace(/\s/g, "")}`;
 
 export default function Header() {
   return (
@@ -18,7 +17,8 @@ export default function Header() {
       <div className="topbar">
         <div className="wrap topbar-in">
           <span>✉ <a href={`mailto:${site.email}`}>{site.email}</a></span>
-          <span className="hide-sm">Mon – Fri 9:00 AM – 5:30 PM</span>
+          <span><a href={waLink()} target="_blank" rel="noopener" className="top-wa"><WhatsApp size={14} /> {site.phoneDisplay}</a></span>
+          <span className="hide-md">Mon – Fri 9:00 AM – 5:30 PM</span>
           <span className="hide-sm">📍 Sydney NSW, Australia</span>
           <span className="top-social">
             {site.sameAs.map((u) => {
@@ -47,9 +47,9 @@ export default function Header() {
               ))}
             </ul>
           </nav>
-          <a href={tel} className="head-phone hide-md">
-            <span className="ph-ico"><Phone /></span>
-            <span><small>Call us</small>{site.phoneDisplay}</span>
+          <a href={waLink()} target="_blank" rel="noopener" className="head-phone hide-md">
+            <span className="ph-ico"><WhatsApp size={22} /></span>
+            <span><small>Call / WhatsApp</small>{site.phoneDisplay}</span>
           </a>
           <Link href="/contact/" className="btn btn-yellow header-cta">Free Audit</Link>
           <details className="mnav">

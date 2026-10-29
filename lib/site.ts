@@ -1,7 +1,8 @@
 // Single source of truth for business facts. Every page, the JSON-LD and
 // llms.txt read from here, so names, phone and areas stay consistent
 // (entity consistency matters for local SEO and AI answer engines).
-// TODO before launch: replace the placeholder phone and street address.
+// TODO before launch: replace the placeholder street address.
+// All phone numbers on the site open a WhatsApp chat.
 
 export const site = {
   name: "Social Boost Sydney",
@@ -11,8 +12,8 @@ export const site = {
   description:
     "Social Boost Sydney is a social media marketing agency in Sydney, NSW. We manage Instagram, Facebook, TikTok and LinkedIn, run paid social ads, create short-form video content and grow local and ecommerce businesses with SEO.",
   email: "hello@socialboostsydney.com.au",
-  phone: "+61 2 0000 0000", // placeholder
-  phoneDisplay: "(02) 0000 0000", // placeholder
+  phone: "+880 1750 423058",
+  phoneDisplay: "+880 1750 423058",
   address: {
     streetAddress: "Level 1, 000 George Street", // placeholder
     addressLocality: "Sydney",
@@ -46,6 +47,9 @@ export const site = {
     "Inner West",
   ],
 };
+
+export const waLink = (text?: string) =>
+  `https://wa.me/${site.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
 
 export type Faq = { q: string; a: string };
 

@@ -12,7 +12,7 @@ export function GET() {
 - Location: ${site.address.addressLocality} ${site.address.addressRegion} ${site.address.postalCode}, Australia
 - Service area: Greater Sydney (${site.areas.join(", ")}) and remote clients Australia-wide
 - Founder: ${site.founder}
-- Contact: ${site.email}, ${site.phoneDisplay}, WhatsApp ${site.whatsappDisplay} (https://wa.me/${site.whatsapp})
+- Contact: ${site.email}, phone and WhatsApp ${site.phoneDisplay} (https://wa.me/${site.whatsapp})
 - Hours: Monday to Friday, 9:00 am to 5:30 pm AEST
 
 ## Services

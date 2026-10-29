@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { services, site } from "@/lib/site";
+import { services, site, waLink } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -37,7 +37,7 @@ export default function Footer() {
             <strong>{site.name}</strong><br />
             {site.address.streetAddress}<br />
             {site.address.addressLocality} {site.address.addressRegion} {site.address.postalCode}<br />
-            <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phoneDisplay}</a><br />
+            WhatsApp: <a href={waLink()} target="_blank" rel="noopener">{site.phoneDisplay}</a><br />
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </address>
         </div>
