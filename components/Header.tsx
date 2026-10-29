@@ -16,7 +16,7 @@ export default function Header() {
     <>
       <div className="topbar">
         <div className="wrap topbar-in">
-          <span>✉ <a href={`mailto:${site.email}`}>{site.email}</a></span>
+          <span className="hide-sm">✉ <a href={`mailto:${site.email}`}>{site.email}</a></span>
           <span><a href={waLink()} target="_blank" rel="noopener" className="top-wa"><WhatsApp size={14} /> {site.phoneDisplay}</a></span>
           <span className="hide-md">Mon – Fri 9:00 AM – 5:30 PM</span>
           <span className="hide-sm">📍 Sydney NSW, Australia</span>
@@ -63,6 +63,10 @@ export default function Header() {
                   )}
                 </li>
               ))}
+              <li className="mnav-cta">
+                <Link href="/contact/" className="btn btn-yellow">Free Audit</Link>
+                <a href={waLink()} target="_blank" rel="noopener" className="btn btn-wa"><WhatsApp size={18} /> WhatsApp</a>
+              </li>
             </ul>
           </details>
         </div>
