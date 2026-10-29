@@ -9,7 +9,7 @@ export const site = {
   url: "https://socialboostsydney.com.au",
   tagline: "Social media marketing agency in Sydney",
   description:
-    "Social Boost Sydney is a social media marketing agency in Sydney, NSW. We manage Instagram, Facebook, TikTok and LinkedIn, run paid social ads and create short-form video content for local businesses.",
+    "Social Boost Sydney is a social media marketing agency in Sydney, NSW. We manage Instagram, Facebook, TikTok and LinkedIn, run paid social ads, create short-form video content and grow local and ecommerce businesses with SEO.",
   email: "hello@socialboostsydney.com.au",
   phone: "+61 2 0000 0000", // placeholder
   phoneDisplay: "(02) 0000 0000", // placeholder
@@ -198,6 +198,36 @@ export const services: Service[] = [
       },
     ],
   },
+  {
+    slug: "ecommerce-seo",
+    name: "Ecommerce SEO",
+    short: "Shopify and WooCommerce SEO that gets product and category pages ranking and selling.",
+    title: "Ecommerce SEO Sydney | Shopify & WooCommerce SEO | Social Boost Sydney",
+    metaDescription:
+      "Ecommerce SEO in Sydney for Shopify and WooCommerce stores: technical fixes, category and product page optimisation, product schema, Merchant Center and AI shopping visibility.",
+    answer:
+      "Ecommerce SEO is the work that gets an online store's category and product pages found in Google, Google Shopping and AI shopping answers. Social Boost Sydney fixes technical issues, researches buyer keywords, rewrites category and product pages, adds product schema and connects Google Merchant Center so more searches turn into sales.",
+    includes: [
+      "Technical SEO audit (speed, crawl, duplicate and faceted URLs)",
+      "Keyword research for categories and products",
+      "Category and product page copy and on-page optimisation",
+      "Product, Offer and Breadcrumb schema",
+      "Google Merchant Center free listings and feed checks",
+      "Monthly ranking, traffic and revenue reporting",
+    ],
+    forWho: ["Shopify stores", "WooCommerce stores", "Australian D2C brands", "Retailers moving online"],
+    priceFrom: "From $1,190 + GST per month",
+    faqs: [
+      {
+        q: "How long does ecommerce SEO take to show results?",
+        a: "Technical fixes and category page improvements usually show movement in 6 to 12 weeks. Strong, steady organic revenue growth typically builds over 4 to 9 months.",
+      },
+      {
+        q: "Do you do SEO for Shopify stores?",
+        a: "Yes. We work on Shopify and WooCommerce, including theme speed, collection pages, product schema, duplicate URL cleanup and Google Merchant Center.",
+      },
+    ],
+  },
 ];
 
 export const generalFaqs: Faq[] = [
@@ -233,3 +263,18 @@ export const steps = [
   { t: "Create & launch", d: "We shoot, design, write and publish, and launch ads with tracking." },
   { t: "Report & grow", d: "Monthly reports in plain English and a call to plan the next month." },
 ];
+
+// Founder track record (from Al Rubel Rana's own work, used in the About counters)
+export const stats = [
+  { n: "5,000+", l: "Keywords ranked" },
+  { n: "20,000+", l: "Leads generated" },
+  { n: "6", l: "Growth services" },
+];
+
+export const features = [
+  { t: "Data-driven decisions", d: "Every campaign is tracked to calls, forms and sales with Meta Pixel, Conversions API and GA4." },
+  { t: "Social + search together", d: "Social content, Google Business Profile and SEO pages work as one system for Google and AI search." },
+  { t: "Sydney local team", d: "We shoot content on location across Sydney and know the suburbs your customers live in." },
+];
+
+export const platforms = ["Instagram", "Facebook", "TikTok", "Google", "LinkedIn", "YouTube", "Shopify", "WooCommerce", "Meta Ads", "Google Business Profile"];

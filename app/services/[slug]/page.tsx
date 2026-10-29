@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import Cta from "@/components/Cta";
 import FaqList from "@/components/FaqList";
+import { Arrow, Check, Phone, icons } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
+import PageBanner from "@/components/PageBanner";
 import { faqSchema, serviceSchema } from "@/lib/schema";
-import { services } from "@/lib/site";
+import { services, site, steps } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -32,48 +33,56 @@ export default async function ServicePage({ params }: Props) {
   const { slug } = await params;
   const s = services.find((x) => x.slug === slug);
   if (!s) notFound();
-  const others = services.filter((x) => x.slug !== s.slug);
   return (
     <>
       <JsonLd data={serviceSchema(s)} />
       <JsonLd data={faqSchema(s.faqs)} />
-      <section className="page-head">
-        <div className="wrap">
-          <Breadcrumbs items={[{ name: "Services", path: "/services/" }, { name: s.name, path: `/services/${s.slug}/` }]} />
-          <h1>{s.name} in Sydney</h1>
-          <p className="lead">{s.answer}</p>
-          <p className="price">{s.priceFrom}</p>
-        </div>
-      </section>
+      <PageBanner
+        title={`${s.name} in Sydney`}
+        crumbs={[{ name: "Services", path: "/services/" }, { name: s.name, path: `/services/${s.slug}/` }]}
+        lead={s.answer}
+      >
+        <p className="price">{s.priceFrom}</p>
+      </PageBanner>
       <section className="sec">
-        <div className="wrap two">
-          <div>
+        <div className="wrap detail">
+          <article className="detail-main">
+            <div className="detail-hero" aria-hidden="true">
+              <span className="dh-ico">{icons[s.slug]}</span>
+              <img src="/brand/icon-yellow-tile.svg" alt="" width={140} height={140} />
+            </div>
             <h2>What’s included</h2>
-            <ul className="ticks">{s.includes.map((i) => <li key={i}>{i}</li>)}</ul>
-          </div>
-          <div>
+            <ul className="ticks">{s.includes.map((i) => <li key={i}><Check /> {i}</li>)}</ul>
             <h2>Who it’s for</h2>
-            <ul className="ticks">{s.forWho.map((i) => <li key={i}>{i}</li>)}</ul>
-          </div>
-        </div>
-      </section>
-      <section className="sec sec-soft">
-        <div className="wrap narrow">
-          <h2>{s.name}: common questions</h2>
-          <FaqList faqs={s.faqs} />
-        </div>
-      </section>
-      <section className="sec">
-        <div className="wrap">
-          <h2>Related services</h2>
-          <div className="grid">
-            {others.map((o) => (
-              <Link key={o.slug} href={`/services/${o.slug}/`} className="card">
-                <h3>{o.name}</h3>
-                <p>{o.short}</p>
-              </Link>
-            ))}
-          </div>
+            <ul className="areas">{s.forWho.map((i) => <li key={i}>{i}</li>)}</ul>
+            <h2>How it works</h2>
+            <ol className="mini-steps">
+              {steps.map((st, i) => <li key={st.t}><b>0{i + 1}. {st.t}</b> {st.d}</li>)}
+            </ol>
+            <h2>{s.name}: common questions</h2>
+            <FaqList faqs={s.faqs} />
+          </article>
+          <aside className="detail-side">
+            <div className="side-box">
+              <h2 className="side-h">All services</h2>
+              <ul className="side-list">
+                {services.map((o) => (
+                  <li key={o.slug}>
+                    <Link href={`/services/${o.slug}/`} aria-current={o.slug === s.slug ? "page" : undefined} className={o.slug === s.slug ? "on" : undefined}>
+                      {o.name} <Arrow />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="side-cta">
+              <img src="/brand/icon-plain.svg" alt="" width={64} height={64} />
+              <h2 className="side-h">Need help with {s.name}?</h2>
+              <p>Get a free audit and a clear plan for your business.</p>
+              <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="side-phone"><Phone /> {site.phoneDisplay}</a>
+              <Link href="/contact/" className="btn btn-dark">Book Free Audit</Link>
+            </div>
+          </aside>
         </div>
       </section>
       <Cta />
