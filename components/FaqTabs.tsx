@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import type { Faq } from "@/lib/site";
+import type { Faq } from "@/lib/content";
 import FaqList from "./FaqList";
 
 // Every panel is rendered into the HTML (inactive ones are only hidden), so

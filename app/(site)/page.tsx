@@ -5,38 +5,42 @@ import FaqTabs from "@/components/FaqTabs";
 import JsonLd from "@/components/JsonLd";
 import ServiceCard from "@/components/ServiceCard";
 import { Check } from "@/components/Icons";
-import { faqGroups } from "@/lib/faqGroups";
+import FounderAvatar from "@/components/FounderAvatar";
+import { faqGroups } from "@/lib/content";
+import { getContent } from "@/lib/getContent";
 import { faqSchema } from "@/lib/schema";
-import { features, generalFaqs, platforms, services, site, stats, steps } from "@/lib/site";
+import type { Metadata } from "next";
 
-export default function Home() {
+export async function generateMetadata(): Promise<Metadata> {
+  const c = await getContent();
+  return { title: c.seo.home.title, description: c.seo.home.description, alternates: { canonical: "/" } };
+}
+
+export default async function Home() {
+  const c = await getContent();
+  const { features, generalFaqs, platforms, services, stats, steps, home: h } = c;
+  const site = c.business;
   return (
     <>
-      <JsonLd data={faqSchema(generalFaqs)} />
+      {generalFaqs.length > 0 && <JsonLd data={faqSchema(generalFaqs)} />}
 
       {/* HERO */}
       <section className="hero">
         <div className="hero-grid-bg" aria-hidden="true" />
         <div className="wrap hero-in">
           <div className="hero-copy">
-            <Eyebrow>Social media marketing agency · Sydney NSW</Eyebrow>
+            <Eyebrow>{h.eyebrow}</Eyebrow>
             <h1>
-              The Social Media Agency for <span className="hl">Higher ROI</span> in Sydney
+              {h.heroTitleBefore}<span className="hl">{h.heroTitleHighlight}</span>{h.heroTitleAfter}
             </h1>
             {/* Answer-first summary: the one paragraph an AI engine should quote */}
-            <p className="lead">
-              Social Boost Sydney manages Instagram, Facebook, TikTok and LinkedIn, runs paid social ads, creates
-              short-form video and does local and ecommerce SEO, so Sydney businesses get more leads, bookings and
-              sales without hiring an in-house team.
-            </p>
+            <p className="lead">{h.heroLead}</p>
             <div className="btn-row">
-              <Link href="/contact/" className="btn btn-yellow">Get a Free Audit</Link>
-              <Link href="/services/" className="btn btn-outline-light">Explore Services</Link>
+              <Link href={h.primaryCta.href} className="btn btn-yellow">{h.primaryCta.label}</Link>
+              <Link href={h.secondaryCta.href} className="btn btn-outline-light">{h.secondaryCta.label}</Link>
             </div>
             <ul className="hero-points">
-              <li><Check /> No lock-in after 3 months</li>
-              <li><Check /> You own every account</li>
-              <li><Check /> Sydney-based team</li>
+              {h.heroPoints.map((p) => <li key={p}><Check /> {p}</li>)}
             </ul>
           </div>
 
@@ -46,7 +50,7 @@ export default function Home() {
             <div className="phone">
               <div className="ph-notch" />
               <div className="post-head">
-                <img src="/brand/icon-yellow-tile.svg" alt="" width={34} height={34} />
+                <img src={c.brand.icon} alt="" width={34} height={34} />
                 <div><b>socialboostsydney</b><small>Sponsored · Sydney</small></div>
               </div>
               <div className="post-img">
@@ -72,7 +76,7 @@ export default function Home() {
 
       {/* PLATFORM MARQUEE */}
       <section className="marquee" aria-label="Platforms we work with">
-        <p className="marquee-title">Platforms we grow Sydney brands on</p>
+        <p className="marquee-title">{h.marqueeTitle}</p>
         <div className="marquee-track">
           {[...platforms, ...platforms].map((p, i) => (
             <span key={i} aria-hidden={i >= platforms.length}>{p}<em>✦</em></span>
@@ -85,29 +89,26 @@ export default function Home() {
         <div className="wrap about">
           <div className="about-visual" aria-hidden="true">
             <div className="av-card">
-              <img src="/brand/icon-yellow-tile.svg" alt="" width={200} height={200} />
+              <img src={c.brand.icon} alt="" width={200} height={200} />
               {["IG", "FB", "TT", "G", "in"].map((t, i) => <span key={t} className={`orb o${i}`}>{t}</span>)}
             </div>
-            <div className="av-badge"><b>{stats[0].n}</b><span>{stats[0].l}</span></div>
+            {stats[0] && <div className="av-badge"><b>{stats[0].n}</b><span>{stats[0].l}</span></div>}
             <div className="av-dots" />
           </div>
           <div>
-            <Eyebrow>About us</Eyebrow>
-            <h2>Why Social Boost should be your top choice in Sydney</h2>
-            <p className="muted">
-              Social Boost Sydney is where social media, paid ads and search work together. Founded by digital
-              marketer {site.founder}, we focus on one thing: turning your online presence into enquiries and sales.
-            </p>
+            <Eyebrow>{h.aboutEyebrow}</Eyebrow>
+            <h2>{h.aboutTitle}</h2>
+            <p className="muted">{h.aboutText}</p>
             <dl className="counters">
               {stats.map((s) => <div key={s.l}><dt>{s.l}</dt><dd>{s.n}</dd></div>)}
             </dl>
-            <Link href="/about/" className="btn btn-dark">More About Us</Link>
+            <Link href={h.aboutButton.href} className="btn btn-dark">{h.aboutButton.label}</Link>
           </div>
         </div>
         <div className="wrap feat-grid">
           {features.map((f, i) => (
             <div key={f.t} className="feat">
-              <span className="feat-n">0{i + 1}</span>
+              <span className="feat-n">{String(i + 1).padStart(2, "0")}</span>
               <h3>{f.t}</h3>
               <p>{f.d}</p>
             </div>
@@ -120,10 +121,10 @@ export default function Home() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <Eyebrow>Our services</Eyebrow>
-              <h2>Services we’re offering in Sydney</h2>
+              <Eyebrow>{h.servicesEyebrow}</Eyebrow>
+              <h2>{h.servicesTitle}</h2>
             </div>
-            <p className="muted">Pick one service or combine them into a full growth plan for social media and search.</p>
+            <p className="muted">{h.servicesText}</p>
           </div>
           <div className="svc-grid">
             {services.map((s) => <ServiceCard key={s.slug} s={s} />)}
@@ -136,14 +137,14 @@ export default function Home() {
         <div className="wrap">
           <div className="sec-head center">
             <div>
-              <Eyebrow>Work process</Eyebrow>
-              <h2>Our 4-step work process</h2>
+              <Eyebrow>{h.processEyebrow}</Eyebrow>
+              <h2>{h.processTitle}</h2>
             </div>
           </div>
           <ol className="process">
             {steps.map((s, i) => (
               <li key={s.t}>
-                <span className="p-num">0{i + 1}</span>
+                <span className="p-num">{String(i + 1).padStart(2, "0")}</span>
                 <h3>{s.t}</h3>
                 <p>{s.d}</p>
               </li>
@@ -156,19 +157,16 @@ export default function Home() {
       <section className="sec why">
         <div className="wrap why-in">
           <div>
-            <Eyebrow>Why choose us</Eyebrow>
-            <h2>Leads, not likes</h2>
+            <Eyebrow>{h.whyEyebrow}</Eyebrow>
+            <h2>{h.whyTitle}</h2>
             <ul className="ticks">
-              <li><Check /> Clear monthly reporting on calls, forms, bookings and sales</li>
-              <li><Check /> Meta Pixel, Conversions API, TikTok Pixel and GA4 set up properly</li>
-              <li><Check /> Content shot on location across Greater Sydney</li>
-              <li><Check /> SEO, schema and FAQ content ready for Google AI Overviews and ChatGPT</li>
+              {h.whyPoints.map((p) => <li key={p}><Check /> {p}</li>)}
             </ul>
           </div>
           <div className="areas-card">
-            <h3>Areas we serve</h3>
+            <h3>{h.areasTitle}</h3>
             <ul className="areas">{site.areas.map((a) => <li key={a}>{a}</li>)}</ul>
-            <p className="small">Plus remote clients Australia-wide.</p>
+            <p className="small">{h.areasNote}</p>
           </div>
         </div>
       </section>
@@ -176,18 +174,14 @@ export default function Home() {
       {/* FOUNDER */}
       <section className="sec">
         <div className="wrap founder">
-          <div className="f-avatar" aria-hidden="true">AR</div>
+          <FounderAvatar b={site} />
           <div>
-            <Eyebrow>Meet the founder</Eyebrow>
+            <Eyebrow>{h.founderEyebrow}</Eyebrow>
             <h2>{site.founder}</h2>
-            <p className="role">Founder · SEO Specialist & Social Media Manager</p>
-            <p className="muted">
-              {site.founder} is a results-driven SEO specialist and social media manager with expertise in ads,
-              branding and digital growth. He has ranked over 5,000 keywords, generated 20,000+ leads through
-              strategic campaigns, and trains businesses and marketers in digital marketing.
-            </p>
+            <p className="role">{site.founderRole}</p>
+            <p className="muted">{site.founderBio}</p>
             <ul className="chips-dark">
-              <li>SEO</li><li>Meta Ads</li><li>Branding</li><li>Canva & design</li><li>Training</li>
+              {site.founderSkills.map((k) => <li key={k}>{k}</li>)}
             </ul>
           </div>
         </div>
@@ -197,16 +191,16 @@ export default function Home() {
       <section className="sec sec-soft">
         <div className="wrap faq-wrap">
           <div>
-            <Eyebrow>Frequently asked</Eyebrow>
-            <h2>Find the answers you need</h2>
-            <p className="muted">Short, direct answers to what Sydney business owners ask us most.</p>
+            <Eyebrow>{h.faqEyebrow}</Eyebrow>
+            <h2>{h.faqTitle}</h2>
+            <p className="muted">{h.faqText}</p>
             <Link href="/faq/" className="btn btn-dark">All FAQs</Link>
           </div>
-          <FaqTabs groups={faqGroups} />
+          <FaqTabs groups={faqGroups(c).groups} />
         </div>
       </section>
 
-      <Cta />
+      <Cta c={c} />
     </>
   );
 }

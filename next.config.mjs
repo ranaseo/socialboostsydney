@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Static export: the whole site builds to /out and can be hosted anywhere
-  // (Vercel, Netlify, cPanel, S3). Remove `output` to use SSR/ISR on Vercel.
-  output: "export",
+  // Runs on Vercel with ISR: public pages are static HTML, regenerated when the
+  // admin panel saves. The admin panel and APIs need a server, so no static export.
   trailingSlash: true,
   images: { unoptimized: true },
+  async headers() {
+    return [{ source: "/admin/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] }];
+  },
 };
 export default nextConfig;

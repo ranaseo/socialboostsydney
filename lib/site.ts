@@ -1,8 +1,7 @@
-// Single source of truth for business facts. Every page, the JSON-LD and
-// llms.txt read from here, so names, phone and areas stay consistent
-// (entity consistency matters for local SEO and AI answer engines).
-// TODO before launch: replace the placeholder street address.
-// All phone numbers on the site open a WhatsApp chat.
+// DEFAULT content. The live site reads its content from the admin panel
+// (/admin), which stores edits in the database. These values are the
+// starting point and the fallback when nothing has been saved yet.
+// See lib/content.ts for the full content model.
 
 export const site = {
   name: "Social Boost Sydney",
@@ -48,9 +47,6 @@ export const site = {
   ],
 };
 
-export const waLink = (text?: string) =>
-  `https://wa.me/${site.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
-
 export type Faq = { q: string; a: string };
 
 export type Service = {
@@ -64,6 +60,8 @@ export type Service = {
   forWho: string[];
   priceFrom: string;
   faqs: Faq[];
+  icon?: string; // key from components/Icons `icons`; defaults to the slug
+  image?: string; // optional image URL shown on the service page
 };
 
 export const services: Service[] = [

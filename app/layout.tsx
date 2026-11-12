@@ -5,54 +5,50 @@ import "@fontsource/montserrat/700.css";
 import "@fontsource/montserrat/800.css";
 import "@fontsource/montserrat/900.css";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import JsonLd from "@/components/JsonLd";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import { organizationSchema } from "@/lib/schema";
-import { site } from "@/lib/site";
+import { getContent } from "@/lib/getContent";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: "Social Media Marketing Agency Sydney | Social Boost Sydney",
-    template: "%s",
-  },
-  description: site.description,
-  applicationName: site.name,
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    locale: "en_AU",
-    siteName: site.name,
-    url: site.url,
-    images: [{ url: "/og-image.png", width: 1640, height: 624, alt: site.name }],
-  },
-  twitter: { card: "summary_large_image", images: ["/og-image.png"] },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
-    apple: "/apple-touch-icon.png",
-  },
-  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
-  other: { "geo.region": "AU-NSW", "geo.placename": "Sydney" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const c = await getContent();
+  const b = c.business;
+  const verification: Metadata["verification"] = {};
+  if (c.seo.googleVerification) verification.google = c.seo.googleVerification;
+  if (c.seo.bingVerification) verification.other = { "msvalidate.01": c.seo.bingVerification };
+  return {
+    metadataBase: new URL(b.url),
+    title: { default: c.seo.defaultTitle, template: "%s" },
+    description: b.description,
+    applicationName: b.name,
+    alternates: { canonical: "/" },
+    openGraph: {
+      type: "website",
+      locale: "en_AU",
+      siteName: b.name,
+      url: b.url,
+      images: [{ url: c.brand.ogImage, width: 1640, height: 624, alt: b.name }],
+    },
+    twitter: { card: "summary_large_image", images: [c.brand.ogImage] },
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+      ],
+      apple: "/apple-touch-icon.png",
+    },
+    robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+    verification,
+    other: { "geo.region": c.seo.geoRegion, "geo.placename": c.seo.geoPlacename },
+  };
+}
 
-export const viewport: Viewport = { themeColor: "#16171D" };
+export async function generateViewport(): Promise<Viewport> {
+  const c = await getContent();
+  return { themeColor: c.brand.colorInk };
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-AU">
-      <body>
-        <JsonLd data={organizationSchema()} />
-        <a href="#main" className="skip">Skip to content</a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <WhatsAppButton />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

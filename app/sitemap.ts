@@ -1,13 +1,12 @@
 import type { MetadataRoute } from "next";
-import { services, site } from "@/lib/site";
+import { getContent } from "@/lib/getContent";
 
-export const dynamic = "force-static";
-
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const c = await getContent();
   const now = new Date();
-  const paths = ["/", "/services/", "/about/", "/faq/", "/contact/", ...services.map((s) => `/services/${s.slug}/`)];
+  const paths = ["/", "/services/", "/about/", "/faq/", "/contact/", ...c.services.map((s) => `/services/${s.slug}/`)];
   return paths.map((p) => ({
-    url: `${site.url}${p}`,
+    url: `${c.business.url}${p}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: p === "/" ? 1 : p.startsWith("/services/") ? 0.8 : 0.6,
