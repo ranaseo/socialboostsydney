@@ -1,16 +1,18 @@
 import Link from "next/link";
-import { services, site, waLink } from "@/lib/site";
+import { waLink, type SiteContent } from "@/lib/content";
+import { hostLabel } from "./Header";
 
-export default function Footer() {
+export default function Footer({ c }: { c: SiteContent }) {
+  const site = c.business;
   return (
     <footer className="footer">
       <div className="wrap footer-grid">
         <div>
-          <img src="/brand/logo-horizontal-white.svg" alt={site.name} width={190} height={67} />
-          <p className="f-muted">Grow your Sydney business with social media, paid ads and SEO that bring real enquiries.</p>
+          <img src={c.brand.logoWhite} alt={site.name} width={190} height={67} />
+          <p className="f-muted">{c.footer.blurb}</p>
           <div className="f-social">
             {site.sameAs.map((u) => {
-              const n = new URL(u).hostname.replace("www.", "").split(".")[0];
+              const n = hostLabel(u);
               return <a key={u} href={u} rel="noopener" aria-label={n}>{n.slice(0, 2).toUpperCase()}</a>;
             })}
           </div>
@@ -27,7 +29,7 @@ export default function Footer() {
         <div>
           <h2 className="fh">Services</h2>
           <ul>
-            {services.map((s) => <li key={s.slug}><Link href={`/services/${s.slug}/`}>{s.name}</Link></li>)}
+            {c.services.map((s) => <li key={s.slug}><Link href={`/services/${s.slug}/`}>{s.name}</Link></li>)}
           </ul>
         </div>
         <div>
@@ -37,7 +39,7 @@ export default function Footer() {
             <strong>{site.name}</strong><br />
             {site.address.streetAddress}<br />
             {site.address.addressLocality} {site.address.addressRegion} {site.address.postalCode}<br />
-            WhatsApp: <a href={waLink()} target="_blank" rel="noopener">{site.phoneDisplay}</a><br />
+            WhatsApp: <a href={waLink(site.whatsapp)} target="_blank" rel="noopener">{site.phoneDisplay}</a><br />
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </address>
         </div>

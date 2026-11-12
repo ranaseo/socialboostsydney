@@ -1,28 +1,28 @@
 import Link from "next/link";
-import { services, site, waLink } from "@/lib/site";
+import { waLink, type SiteContent } from "@/lib/content";
 import { WhatsApp } from "./Icons";
 
-const nav = [
-  { href: "/", label: "Home" },
-  { href: "/about/", label: "About Us" },
-  { href: "/services/", label: "Services", children: services.map((s) => ({ href: `/services/${s.slug}/`, label: s.name })) },
-  { href: "/faq/", label: "FAQ" },
-  { href: "/contact/", label: "Contact" },
-];
-
-
-export default function Header() {
+export default function Header({ c }: { c: SiteContent }) {
+  const site = c.business;
+  const wa = waLink(site.whatsapp);
+  const nav: { href: string; label: string; children?: { href: string; label: string }[] }[] = [
+    { href: "/", label: "Home" },
+    { href: "/about/", label: "About Us" },
+    { href: "/services/", label: "Services", children: c.services.map((s) => ({ href: `/services/${s.slug}/`, label: s.name })) },
+    { href: "/faq/", label: "FAQ" },
+    { href: "/contact/", label: "Contact" },
+  ];
   return (
     <>
       <div className="topbar">
         <div className="wrap topbar-in">
           <span className="hide-sm">✉ <a href={`mailto:${site.email}`}>{site.email}</a></span>
-          <span><a href={waLink()} target="_blank" rel="noopener" className="top-wa"><WhatsApp size={14} /> {site.phoneDisplay}</a></span>
-          <span className="hide-md">Mon – Fri 9:00 AM – 5:30 PM</span>
-          <span className="hide-sm">📍 Sydney NSW, Australia</span>
+          <span><a href={wa} target="_blank" rel="noopener" className="top-wa"><WhatsApp size={14} /> {site.phoneDisplay}</a></span>
+          <span className="hide-md">{site.hoursShort}</span>
+          <span className="hide-sm">📍 {site.locationShort}</span>
           <span className="top-social">
             {site.sameAs.map((u) => {
-              const n = new URL(u).hostname.replace("www.", "").split(".")[0];
+              const n = hostLabel(u).replace("www.", "").split(".")[0];
               return <a key={u} href={u} rel="noopener" aria-label={n}>{n.slice(0, 2).toUpperCase()}</a>;
             })}
           </span>
@@ -31,7 +31,7 @@ export default function Header() {
       <header className="header">
         <div className="wrap header-in">
           <Link href="/" className="brand" aria-label={`${site.name} home`}>
-            <img src="/brand/logo-horizontal-primary.svg" alt={site.name} width={170} height={60} />
+            <img src={c.brand.logo} alt={site.name} width={170} height={60} />
           </Link>
           <nav aria-label="Main" className="nav-wrap">
             <ul className="nav">
@@ -47,11 +47,11 @@ export default function Header() {
               ))}
             </ul>
           </nav>
-          <a href={waLink()} target="_blank" rel="noopener" className="head-phone hide-md">
+          <a href={wa} target="_blank" rel="noopener" className="head-phone hide-md">
             <span className="ph-ico"><WhatsApp size={22} /></span>
-            <span><small>Call / WhatsApp</small>{site.phoneDisplay}</span>
+            <span><small>{c.header.phoneLabel}</small>{site.phoneDisplay}</span>
           </a>
-          <Link href="/contact/" className="btn btn-yellow header-cta">Free Audit</Link>
+          <Link href={c.header.ctaHref} className="btn btn-yellow header-cta">{c.header.ctaLabel}</Link>
           <details className="mnav">
             <summary aria-label="Menu">☰</summary>
             <ul>
@@ -64,8 +64,8 @@ export default function Header() {
                 </li>
               ))}
               <li className="mnav-cta">
-                <Link href="/contact/" className="btn btn-yellow">Free Audit</Link>
-                <a href={waLink()} target="_blank" rel="noopener" className="btn btn-wa"><WhatsApp size={18} /> WhatsApp</a>
+                <Link href={c.header.ctaHref} className="btn btn-yellow">{c.header.ctaLabel}</Link>
+                <a href={wa} target="_blank" rel="noopener" className="btn btn-wa"><WhatsApp size={18} /> WhatsApp</a>
               </li>
             </ul>
           </details>
@@ -73,4 +73,12 @@ export default function Header() {
       </header>
     </>
   );
+}
+
+export function hostLabel(u: string) {
+  try {
+    return new URL(u).hostname.replace("www.", "").split(".")[0];
+  } catch {
+    return "link";
+  }
 }
