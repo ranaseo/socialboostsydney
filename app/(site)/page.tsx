@@ -9,6 +9,7 @@ import FounderAvatar from "@/components/FounderAvatar";
 import { faqGroups } from "@/lib/content";
 import { getContent } from "@/lib/getContent";
 import { faqSchema } from "@/lib/schema";
+import { keywordLinks } from "@/lib/seoPages";
 import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -129,6 +130,10 @@ export default async function Home() {
           <div className="svc-grid">
             {services.map((s) => <ServiceCard key={s.slug} s={s} />)}
           </div>
+          <h3 className="kw-h">Popular SEO and ads services in Sydney</h3>
+          <ul className="kw-links">
+            {keywordLinks.map((l) => <li key={l.href}><Link href={l.href}>{l.label}</Link></li>)}
+          </ul>
         </div>
       </section>
 
