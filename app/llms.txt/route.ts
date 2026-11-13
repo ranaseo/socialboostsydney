@@ -1,4 +1,5 @@
 import { getContent } from "@/lib/getContent";
+import { seoPages } from "@/lib/seoPages";
 
 // llms.txt (https://llmstxt.org): a plain Markdown summary that LLM tools can
 // read in one request. Built from the same content as the pages, so it never drifts.
@@ -20,6 +21,10 @@ export async function GET() {
 ## Services
 
 ${c.services.map((s) => `- [${s.name}](${site.url}/services/${s.slug}/): ${s.short} ${s.priceFrom}.`).join("\n")}
+
+## Specialist and local pages
+
+${seoPages.map((p) => `- [${p.keyword}](${site.url}/${p.slug}/): ${p.metaDescription}`).join("\n")}
 
 ## Key pages
 

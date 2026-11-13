@@ -5,10 +5,12 @@ import Cta from "@/components/Cta";
 import FaqList from "@/components/FaqList";
 import { Arrow, Check, WhatsApp, serviceIcon } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
+import { LongForm, RelatedLinks } from "@/components/LongForm";
 import PageBanner from "@/components/PageBanner";
 import { faqSchema, serviceSchema } from "@/lib/schema";
 import { waLink } from "@/lib/content";
 import { getContent } from "@/lib/getContent";
+import { seoPages, serviceGuides } from "@/lib/seoPages";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -39,14 +41,18 @@ export default async function ServicePage({ params }: Props) {
   const { services, business: site, steps } = c;
   const s = services.find((x) => x.slug === slug);
   if (!s) notFound();
+  // Long-form guide for services that target a specific search phrase (lib/seoPages.ts).
+  const g = serviceGuides[s.slug];
+  const related = [...new Set([...(g?.related ?? []), ...seoPages.filter((p) => p.serviceSlug === s.slug).map((p) => `/${p.slug}/`)])];
+  const faqs = g ? [...s.faqs, ...g.faqs.filter((f) => !s.faqs.some((x) => x.q === f.q))] : s.faqs;
   return (
     <>
       <JsonLd data={serviceSchema(c, s)} />
-      {s.faqs.length > 0 && <JsonLd data={faqSchema(s.faqs)} />}
+      {faqs.length > 0 && <JsonLd data={faqSchema(faqs)} />}
       <PageBanner
-        title={`${s.name} in ${site.address.addressLocality}`}
+        title={g?.h1 ?? `${s.name} in ${site.address.addressLocality}`}
         crumbs={[{ name: "Services", path: "/services/" }, { name: s.name, path: `/services/${s.slug}/` }]}
-        lead={s.answer}
+        lead={g?.intro ?? s.answer}
       >
         <p className="price">{s.priceFrom}</p>
       </PageBanner>
@@ -61,6 +67,7 @@ export default async function ServicePage({ params }: Props) {
                 <img src={c.brand.icon} alt="" width={140} height={140} />
               </div>
             )}
+            {g && <LongForm sections={g.sections} />}
             <h2>What’s included</h2>
             <ul className="ticks">{s.includes.map((i) => <li key={i}><Check /> {i}</li>)}</ul>
             <h2>Who it’s for</h2>
@@ -69,10 +76,10 @@ export default async function ServicePage({ params }: Props) {
             <ol className="mini-steps">
               {steps.map((st, i) => <li key={st.t}><b>{String(i + 1).padStart(2, "0")}. {st.t}</b> {st.d}</li>)}
             </ol>
-            {s.faqs.length > 0 && (
+            {faqs.length > 0 && (
               <>
-                <h2>{s.name}: common questions</h2>
-                <FaqList faqs={s.faqs} />
+                <h2>{g?.h1 ?? s.name}: common questions</h2>
+                <FaqList faqs={faqs} />
               </>
             )}
           </article>
@@ -89,6 +96,7 @@ export default async function ServicePage({ params }: Props) {
                 ))}
               </ul>
             </div>
+            {related.length > 0 && <RelatedLinks paths={related} names={Object.fromEntries(services.map((o) => [`/services/${o.slug}/`, o.name]))} />}
             <div className="side-cta">
               <img src={c.brand.iconPlain} alt="" width={64} height={64} />
               <h2 className="side-h">Need help with {s.name}?</h2>
