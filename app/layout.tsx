@@ -5,6 +5,7 @@ import "@fontsource/montserrat/700.css";
 import "@fontsource/montserrat/800.css";
 import "@fontsource/montserrat/900.css";
 import "./globals.css";
+import "./case-studies.css";
 import { getContent } from "@/lib/getContent";
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -10,6 +10,7 @@ import { waLink } from "@/lib/content";
 import { getContent } from "@/lib/getContent";
 import { INDUSTRIES_UPDATED, industries, industryPath } from "@/lib/industries";
 import { faqSchema, industrySchema } from "@/lib/schema";
+import { caseStudyPath, visibleCaseStudies } from "@/lib/caseStudies";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -47,6 +48,7 @@ export default async function IndustryPage({ params }: Props) {
   const lower = i.name.toLowerCase();
   const used = i.services.map((s) => c.services.find((x) => x.slug === s)).filter((s) => !!s);
   const related = industries.filter((x) => x.group === i.group && x.slug !== i.slug);
+  const cases = visibleCaseStudies(c.caseStudies).filter((cs) => cs.industrySlug === i.slug);
   return (
     <>
       <JsonLd data={industrySchema(c, i, INDUSTRIES_UPDATED)} />
@@ -125,6 +127,15 @@ export default async function IndustryPage({ params }: Props) {
               <a href={waLink(site.whatsapp, `Hi, I run a business in this industry: ${i.name}. I'd like a free audit.`)} target="_blank" rel="noopener" className="side-phone"><WhatsApp size={22} /> {site.phoneDisplay}</a>
               <Link href={c.header.ctaHref} className="btn btn-dark">{c.header.ctaLabel}</Link>
             </div>
+            {cases.length > 0 && (
+              <div className="side-box">
+                <h2 className="side-h">Case study</h2>
+                <ul className="side-list">
+                  {cases.map((cs) => <li key={cs.slug}><Link href={caseStudyPath(cs)}>{cs.results[0] ? `${cs.results[0].n} ${cs.results[0].l}` : cs.title} <Arrow /></Link></li>)}
+                  <li><Link href="/case-studies/">All case studies <Arrow /></Link></li>
+                </ul>
+              </div>
+            )}
           </aside>
         </div>
       </section>

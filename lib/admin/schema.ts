@@ -2,6 +2,8 @@
 // (app/admin/_components/Editor.tsx) renders forms from these definitions,
 // so adding a field here plus a default in lib/content.ts is all it takes.
 import type { SectionKey } from "../content";
+import { industries } from "../industries";
+import { services } from "../site";
 
 export type Field =
   | { k: string; label: string; type: "text" | "textarea" | "url" | "image" | "color" | "number" | "email"; help?: string; max?: number; rows?: number; placeholder?: string }
@@ -251,6 +253,91 @@ export const adminPages: AdminPage[] = [
     ],
   },
   {
+    slug: "case-studies",
+    title: "Case studies",
+    icon: "🏆",
+    desc: "Add, edit, reorder or remove case studies. Each one gets its own page at /case-studies/slug/ with Article schema, and the latest three show on the homepage.",
+    blocks: [
+      {
+        key: "caseStudies",
+        title: "Case studies",
+        help: "The four starting case studies are EXAMPLES. While “This is an example” is ticked, the page shows an “Example” label and is hidden from Google (noindex, not in the sitemap). Replace the text and numbers with a real client result, then untick it.",
+        root: "items",
+        titleKey: "title",
+        addLabel: "Add case study",
+        newItem: {
+          slug: "new-case-study",
+          published: false,
+          isExample: false,
+          title: "New case study",
+          client: "",
+          industry: "",
+          industrySlug: "",
+          location: "Sydney",
+          services: [],
+          duration: "",
+          date: new Date().toISOString().slice(0, 10),
+          summary: "",
+          metaTitle: "",
+          metaDescription: "",
+          image: "",
+          results: [{ n: "", l: "" }],
+          challenge: "",
+          approach: [],
+          outcome: "",
+          testimonial: { quote: "", name: "", role: "" },
+          gallery: [],
+        },
+        fields: [
+          { k: "published", label: "Show on the website", type: "bool", help: "Untick to hide it while you write." },
+          { k: "isExample", label: "This is an example (not a real client yet)", type: "bool", help: "Shows an “Example” label and keeps the page out of Google. Untick once the results are real." },
+          { k: "title", label: "Headline (H1)", type: "text", help: "Lead with the result, e.g. “How a Parramatta clinic booked 420 new patients”." },
+          { k: "slug", label: "URL slug", type: "text", help: "Lowercase letters, numbers and dashes. Changing it changes the page URL." },
+          { k: "client", label: "Client name (or a description if they prefer to stay anonymous)", type: "text" },
+          { k: "industry", label: "Industry label", type: "text", placeholder: "Plumbing" },
+          { k: "industrySlug", label: "Link to industry page", type: "select", options: industries.map((i) => i.slug) },
+          { k: "location", label: "Location (suburb / area)", type: "text" },
+          { k: "services", label: "Services used (service URL slugs)", type: "list", help: `Links the case study to these service pages. Available: ${services.map((x) => x.slug).join(", ")}` },
+          { k: "duration", label: "Campaign length", type: "text", placeholder: "6 months" },
+          { k: "date", label: "Date (YYYY-MM-DD)", type: "text", help: "Used as the published date for Google." },
+          { k: "summary", label: "Answer-first summary (cards + top of page)", type: "textarea", rows: 4, help: "Two or three sentences: who the client is, what we did and the main number. AI engines quote this." },
+          { k: "image", label: "Cover image (optional)", type: "image", help: "1200×630 works best. A results screenshot or a photo of the business." },
+          { k: "results", label: "Key results (big numbers)", type: "items", titleKey: "l", newItem: { n: "+100%", l: "new result" }, addLabel: "Add result", fields: [
+            { k: "n", label: "Number", type: "text", placeholder: "+214%" },
+            { k: "l", label: "What it measures", type: "text", placeholder: "calls from Google" },
+          ] },
+          { k: "challenge", label: "The challenge", type: "textarea", rows: 4 },
+          { k: "approach", label: "What we did (one step per line)", type: "list" },
+          { k: "outcome", label: "The result (paragraph)", type: "textarea", rows: 4 },
+          { k: "testimonial", label: "Client testimonial (optional)", type: "group", fields: [
+            { k: "quote", label: "Quote", type: "textarea", rows: 3 },
+            { k: "name", label: "Name", type: "text" },
+            { k: "role", label: "Role and business", type: "text" },
+          ] },
+          { k: "gallery", label: "Images (screenshots, before / after)", type: "items", titleKey: "caption", newItem: { src: "", caption: "" }, addLabel: "Add image", fields: [
+            { k: "src", label: "Image", type: "image" },
+            { k: "caption", label: "Caption", type: "text" },
+          ] },
+          { k: "metaTitle", label: "Meta title", type: "text", max: 60 },
+          { k: "metaDescription", label: "Meta description", type: "textarea", rows: 3, max: 160 },
+        ],
+      },
+      {
+        key: "caseStudiesPage",
+        title: "Case studies page and homepage section",
+        fields: [
+          { k: "bannerTitle", label: "Page heading", type: "text" },
+          { k: "bannerLead", label: "Intro paragraph", type: "textarea", rows: 3 },
+          { k: "cardCta", label: "Card link text", type: "text" },
+          { k: "homeEyebrow", label: "Homepage section — label", type: "text" },
+          { k: "homeTitle", label: "Homepage section — heading", type: "text" },
+          { k: "homeText", label: "Homepage section — text", type: "textarea", rows: 2 },
+          { k: "exampleLabel", label: "Label shown on example case studies", type: "text" },
+        ],
+      },
+    ],
+  },
+  {
     slug: "faqs",
     title: "FAQs",
     icon: "❓",
@@ -387,6 +474,7 @@ export const adminPages: AdminPage[] = [
           seoPage("about", "About page"),
           seoPage("faq", "FAQ page"),
           seoPage("contact", "Contact page"),
+          seoPage("caseStudies", "Case studies page"),
           { k: "geoRegion", label: "geo.region meta", type: "text" },
           { k: "geoPlacename", label: "geo.placename meta", type: "text" },
           { k: "googleVerification", label: "Google Search Console verification code", type: "text", help: "Only the content=\"…\" value." },

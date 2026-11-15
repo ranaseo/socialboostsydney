@@ -4,8 +4,9 @@
 // phone and areas stay consistent everywhere (entity consistency matters for
 // local SEO and AI answer engines).
 import { features, generalFaqs, platforms, services, site, stats, steps, type Faq, type Service } from "./site";
+import { caseStudiesPageDefaults, caseStudiesSeo, defaultCaseStudies, type CaseStudy } from "./caseStudies";
 
-export type { Faq, Service };
+export type { Faq, Service, CaseStudy };
 export type Link = { label: string; href: string };
 export type PageSeo = { title: string; description: string };
 export type Item = { t: string; d: string };
@@ -51,6 +52,8 @@ export const defaultContent = {
   stats: stats as Stat[],
   features: features as Item[],
   platforms: platforms as string[],
+  caseStudies: defaultCaseStudies as CaseStudy[],
+  caseStudiesPage: caseStudiesPageDefaults,
   home: {
     eyebrow: "Social media marketing agency · Sydney NSW",
     heroTitleBefore: "The Social Media Agency for ",
@@ -165,6 +168,7 @@ export const defaultContent = {
       description:
         "Book a free social media and SEO audit with Social Boost Sydney. Call, email or send the form and we reply within one business day.",
     } as PageSeo,
+    caseStudies: caseStudiesSeo as PageSeo,
     geoRegion: "AU-NSW",
     geoPlacename: "Sydney",
     googleVerification: "",
