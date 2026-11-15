@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { addLead } from "@/lib/db";
 import { readStoredContent } from "@/lib/getContent";
+import { sendLeadAlert } from "@/lib/notify";
 
 export const dynamic = "force-dynamic";
 
@@ -50,31 +51,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Sorry, we could not send your message. Please message us on WhatsApp." }, { status: 500 });
   }
 
-  await notify(lead).catch((e) => console.error("[leads] email alert failed", e));
+  // Email alert. A failed email never fails the submission: the lead is already saved.
+  const alert = await sendLeadAlert(lead, await readStoredContent());
+  if (alert.error) console.error("[leads] email alert failed:", alert.error);
+  else if (alert.skipped) console.warn("[leads] email alert skipped:", alert.skipped);
   return NextResponse.json({ ok: true });
-}
-
-// Optional email alert through Resend (https://resend.com). Needs RESEND_API_KEY
-// and a lead email set in Admin → SEO & tracking → Lead alerts.
-async function notify(lead: Record<string, string>) {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return;
-  const c = await readStoredContent();
-  const to = c.notifications.leadEmail;
-  if (!to) return;
-  const esc = (s: string) => s.replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]!);
-  const rows = Object.entries(lead)
-    .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;color:#666">${k}</td><td style="padding:4px 0">${esc(v)}</td></tr>`)
-    .join("");
-  await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: process.env.LEAD_FROM_EMAIL || "Website <onboarding@resend.dev>",
-      to: [to],
-      reply_to: lead.email,
-      subject: `New lead: ${lead.name}${lead.service ? ` (${lead.service})` : ""}`,
-      html: `<h2>New website lead</h2><table>${rows}</table><p><a href="${c.business.url}/admin/leads/">Open in admin</a></p>`,
-    }),
-  });
 }

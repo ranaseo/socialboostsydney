@@ -4,6 +4,8 @@ import { hasDatabase, listLeads } from "@/lib/db";
 import { readStoredContent } from "@/lib/getContent";
 import { hasBlob } from "@/lib/media";
 import { requireAdmin } from "@/lib/session";
+import { leadAlertRecipient, leadAlertsReady } from "@/lib/notify";
+import TestEmailButton from "../_components/TestEmailButton";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +21,7 @@ export default async function Dashboard() {
     { ok: !/000 George Street/.test(c.business.address.streetAddress), t: "Real street address added (Business info)" },
     { ok: !!c.tracking.ga4Id || !!c.tracking.gtmId, t: "Google Analytics / Tag Manager added (SEO & tracking)" },
     { ok: !!c.seo.googleVerification, t: "Google Search Console verified (SEO & tracking)" },
-    { ok: !!c.notifications.leadEmail && !!process.env.RESEND_API_KEY, t: "Email alerts for new leads" },
+    { ok: leadAlertsReady(c), t: "Email alerts for new leads" },
   ];
   return (
     <>
@@ -60,6 +62,19 @@ export default async function Dashboard() {
           </ul>
         </section>
       </div>
+
+      <section className="a-card">
+        <h2>Email alerts for new leads</h2>
+        {leadAlertsReady(c) ? (
+          <p className="a-muted">Every new form submission is emailed to <b>{leadAlertRecipient(c)}</b>. Hit reply in that email to answer the lead directly.</p>
+        ) : (
+          <p className="a-muted">
+            {!process.env.RESEND_API_KEY ? "Not set up yet: add RESEND_API_KEY in Vercel → Settings → Environment Variables, then redeploy. " : ""}
+            {!leadAlertRecipient(c) ? <>Add the email to send leads to in <Link href="/admin/seo/">SEO &amp; tracking → Lead alerts</Link> (or NOTIFY_EMAIL in Vercel).</> : null}
+          </p>
+        )}
+        <TestEmailButton />
+      </section>
 
       <section className="a-card">
         <h2>Edit the website</h2>
