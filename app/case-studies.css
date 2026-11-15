@@ -79,3 +79,4 @@
 }
 .header-cta { white-space: nowrap; }
 @media (max-width: 1240px) { .head-phone { display: none; } }
+.cs-gallery figure:only-child { grid-column: 1 / -1; }

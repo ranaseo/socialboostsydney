@@ -20,6 +20,9 @@ export async function readStoredContent(): Promise<SiteContent> {
 
 // Cached for public pages. Pages stay static (fast, crawlable HTML) and are
 // regenerated when the admin saves (revalidateTag + revalidatePath).
-const cached = unstable_cache(readStoredContent, [CONTENT_KEY], { tags: [CONTENT_TAG] });
+// The deployment id is part of the key so a new deploy never serves content
+// cached by an older build (new default content shows up straight away).
+const BUILD_KEY = process.env.VERCEL_DEPLOYMENT_ID || process.env.VERCEL_GIT_COMMIT_SHA || "local";
+const cached = unstable_cache(readStoredContent, [CONTENT_KEY, BUILD_KEY], { tags: [CONTENT_TAG] });
 
 export const getContent = cache(async (): Promise<SiteContent> => cached());

@@ -50,6 +50,51 @@ export const caseStudiesSeo = {
 
 export const defaultCaseStudies: CaseStudy[] = [
   {
+    slug: "sydney-cleaning-and-pest-local-seo-social-media",
+    published: true,
+    isExample: false,
+    title: "How a Blacktown Cleaning & Pest Control Company Reached 5,260 Google Searches in 3 Months",
+    client: "Sydney Cleaning and Pest",
+    industry: "Cleaning & Pest Control",
+    industrySlug: "cleaning-business-marketing-sydney",
+    location: "Blacktown, Western Sydney",
+    services: ["local-seo", "social-media-management", "content-creation"],
+    duration: "3 months",
+    date: "2026-11-16",
+    summary:
+      "Sydney Cleaning and Pest is a family-run, licensed cleaning and pest control company in Blacktown with 30+ years in the trade. In three months of local SEO, Google Business Profile work and social media content, its website appeared in 5,260 Google searches with an average position of 8.8, backed by a 5.0★ Google rating from 52 reviews.",
+    metaTitle: "Cleaning & Pest Control Local SEO Case Study | Blacktown",
+    metaDescription:
+      "Local SEO, Google Business Profile and social content got a Blacktown cleaning and pest control company 5,260 Google impressions in 3 months.",
+    image: "",
+    results: [
+      { n: "5,260", l: "Google search impressions in 3 months" },
+      { n: "8.8", l: "average Google position" },
+      { n: "5.0★", l: "Google rating from 52 reviews" },
+      { n: "71", l: "organic clicks from Google search" },
+    ],
+    challenge:
+      "Sydney Cleaning and Pest had 30 years of happy customers but very little visibility online. Carpet cleaning and pest control in Western Sydney are crowded searches, full of franchise brands and lead-selling directories. The business needed to show up when locals search for things like “carpet cleaning Blacktown” or “pest control near me”, prove its reputation with reviews, and give people a clear reason to choose a family-run team over a big name.",
+    approach: [
+      "Optimised the Google Business Profile: correct categories, every cleaning and pest service, service areas, opening hours, real job photos and regular posts",
+      "Built a separate, answer-first page for each service: carpet steam cleaning, commercial carpet cleaning, end of lease, sofa and upholstery, mattress, rug, and tile and grout cleaning",
+      "Created suburb pages starting with Blacktown, targeting searches across Parramatta, Penrith, Liverpool, the Hills District and Western Sydney",
+      "Added LocalBusiness schema, a consistent name, address and phone everywhere, and a WhatsApp “Book Now” button with quotes in under 2 hours",
+      "Set up a simple review request after every job, building a 5.0★ rating from 52 Google reviews",
+      "Managed the Facebook page with regular posts, offers and fast replies to customer questions",
+      "Filmed short before-and-after videos for TikTok and Facebook Reels: carpet stains lifted, sofas refreshed, pest treatments explained",
+    ],
+    outcome:
+      "In the last three months the website appeared in 5,260 Google searches and earned 71 organic clicks, with an average position of 8.8, inside the top 10 results on average across its searches. Together with a 5.0★ Google rating from 52 reviews and before-and-after videos on Facebook and TikTok, Sydney Cleaning and Pest now has a local presence that turns searches into calls and WhatsApp bookings.",
+    testimonial: { quote: "", name: "", role: "" },
+    gallery: [
+      {
+        src: "/case-studies/sydney-cleaning-and-pest-search-console.png",
+        caption: "Google Search Console, last 3 months: 71 clicks, 5,260 impressions, average position 8.8",
+      },
+    ],
+  },
+  {
     slug: "inner-west-plumber-local-seo",
     published: true,
     isExample: true,
