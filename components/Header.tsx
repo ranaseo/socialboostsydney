@@ -1,14 +1,21 @@
 import Link from "next/link";
 import { waLink, type SiteContent } from "@/lib/content";
+import { industryGroups, industryPath } from "@/lib/industries";
 import { WhatsApp } from "./Icons";
 
 export default function Header({ c }: { c: SiteContent }) {
   const site = c.business;
   const wa = waLink(site.whatsapp);
-  const nav: { href: string; label: string; children?: { href: string; label: string }[] }[] = [
+  type Item = { href: string; label: string };
+  const nav: (Item & { children?: Item[]; groups?: { title: string; items: Item[] }[] })[] = [
     { href: "/", label: "Home" },
     { href: "/about/", label: "About Us" },
     { href: "/services/", label: "Services", children: c.services.map((s) => ({ href: `/services/${s.slug}/`, label: s.name })) },
+    {
+      href: "/industries/",
+      label: "Industries",
+      groups: industryGroups.map((g) => ({ title: g.group, items: g.items.map((i) => ({ href: industryPath(i), label: i.name })) })),
+    },
     { href: "/faq/", label: "FAQ" },
     { href: "/contact/", label: "Contact" },
   ];
@@ -36,8 +43,21 @@ export default function Header({ c }: { c: SiteContent }) {
           <nav aria-label="Main" className="nav-wrap">
             <ul className="nav">
               {nav.map((n) => (
-                <li key={n.href} className={n.children ? "has-sub" : undefined}>
-                  <Link href={n.href}>{n.label}{n.children && <span className="caret">▾</span>}</Link>
+                <li key={n.href} className={n.groups ? "has-sub has-mega" : n.children ? "has-sub" : undefined}>
+                  <Link href={n.href}>{n.label}{(n.children || n.groups) && <span className="caret">▾</span>}</Link>
+                  {n.groups && (
+                    <div className="sub-menu mega">
+                      <div className="mega-cols">
+                        {n.groups.map((g) => (
+                          <div key={g.title}>
+                            <p className="mega-h">{g.title}</p>
+                            <ul>{g.items.map((it) => <li key={it.href}><Link href={it.href}>{it.label}</Link></li>)}</ul>
+                          </div>
+                        ))}
+                      </div>
+                      <Link href={n.href} className="mega-all">View all businesses we help →</Link>
+                    </div>
+                  )}
                   {n.children && (
                     <ul className="sub-menu">
                       {n.children.map((c) => <li key={c.href}><Link href={c.href}>{c.label}</Link></li>)}
@@ -61,6 +81,12 @@ export default function Header({ c }: { c: SiteContent }) {
                   {n.children && (
                     <ul>{n.children.map((c) => <li key={c.href}><Link href={c.href}>{c.label}</Link></li>)}</ul>
                   )}
+                  {n.groups && n.groups.map((g) => (
+                    <details key={g.title} className="mnav-group">
+                      <summary>{g.title}</summary>
+                      <ul>{g.items.map((it) => <li key={it.href}><Link href={it.href}>{it.label}</Link></li>)}</ul>
+                    </details>
+                  ))}
                 </li>
               ))}
               <li className="mnav-cta">

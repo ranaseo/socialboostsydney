@@ -1,4 +1,5 @@
 import { getContent } from "@/lib/getContent";
+import { industries, industryPath } from "@/lib/industries";
 
 // llms.txt (https://llmstxt.org): a plain Markdown summary that LLM tools can
 // read in one request. Built from the same content as the pages, so it never drifts.
@@ -21,9 +22,14 @@ export async function GET() {
 
 ${c.services.map((s) => `- [${s.name}](${site.url}/services/${s.slug}/): ${s.short} ${s.priceFrom}.`).join("\n")}
 
+## Industries we help
+
+${industries.map((i) => `- [${i.h1}](${site.url}${industryPath(i)}): ${i.answer}`).join("\n")}
+
 ## Key pages
 
 - [Home](${site.url}/)
+- [Businesses we help](${site.url}/industries/)
 - [About](${site.url}/about/)
 - [FAQ](${site.url}/faq/)
 - [Contact / free audit](${site.url}/contact/)
