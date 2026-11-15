@@ -95,12 +95,17 @@ export default async function CaseStudyPage({ params }: Props) {
 
             <h2>The client</h2>
             <p>
-              {cs.client}{cs.location ? ` in ${cs.location}` : ""}
+              {cs.website ? <a href={cs.website} target="_blank" rel="noopener">{cs.client}</a> : cs.client}{cs.location ? ` in ${cs.location}` : ""}
               {used.length > 0 && <>, working with us on {used.map((s, i) => (
                 <span key={s.slug}>{i > 0 && (i === used.length - 1 ? " and " : ", ")}<Link href={`/services/${s.slug}/`}>{s.name}</Link></span>
               ))}</>}
               {cs.duration ? ` for ${cs.duration}` : ""}.
             </p>
+            {cs.website && (
+              <p className="cs-site">
+                Website: <a href={cs.website} target="_blank" rel="noopener">{cs.website.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}</a>
+              </p>
+            )}
 
             {cs.challenge && (
               <>

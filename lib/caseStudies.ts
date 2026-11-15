@@ -13,6 +13,7 @@ export type CaseStudy = {
   isExample: boolean;
   title: string; // H1
   client: string; // client name, or an anonymous description
+  website?: string; // client's website (optional, linked on the page)
   industry: string; // shown as a label, e.g. "Plumbing"
   industrySlug: string; // links to /industries/<slug>/ (optional)
   location: string; // suburb or area
@@ -55,6 +56,7 @@ export const defaultCaseStudies: CaseStudy[] = [
     isExample: false,
     title: "How a Blacktown Cleaning & Pest Control Company Reached 5,260 Google Searches in 3 Months",
     client: "Sydney Cleaning and Pest",
+    website: "https://sydneycleaningandpest.com/",
     industry: "Cleaning & Pest Control",
     industrySlug: "cleaning-business-marketing-sydney",
     location: "Blacktown, Western Sydney",
@@ -308,6 +310,7 @@ export function caseStudySchema(c: SchemaCtx, cs: CaseStudy, serviceNames: { slu
     about: {
       "@type": "Organization",
       name: cs.client,
+      ...(cs.website ? { url: cs.website } : {}),
       ...(cs.location ? { location: { "@type": "Place", name: cs.location } } : {}),
     },
     mentions: serviceNames.map((s) => ({ "@type": "Service", name: s.name, url: `${u}/services/${s.slug}/`, provider: { "@id": `${u}/#organization` } })),
