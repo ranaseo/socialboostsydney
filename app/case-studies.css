@@ -40,7 +40,7 @@
 .cs-quote footer { display: flex; flex-direction: column; font-size: .9rem; }
 .cs-quote footer b { color: var(--yellow); }
 .cs-quote footer span { color: #b9bac0; }
-.cs-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+.cs-gallery { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 28px 0; }
 .cs-gallery figure { margin: 0; }
 .cs-gallery img { width: 100%; border-radius: 16px; border: 1px solid var(--line); }
 .cs-gallery figcaption { font-size: .85rem; color: var(--grey); margin-top: 6px; }

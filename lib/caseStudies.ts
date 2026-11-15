@@ -62,7 +62,7 @@ export const defaultCaseStudies: CaseStudy[] = [
     duration: "3 months",
     date: "2026-11-16",
     summary:
-      "Sydney Cleaning and Pest is a family-run, licensed cleaning and pest control company in Blacktown with 30+ years in the trade. In three months of local SEO, Google Business Profile work and social media content, its website appeared in 5,260 Google searches with an average position of 8.8, backed by a 5.0★ Google rating from 52 reviews.",
+      "Sydney Cleaning and Pest is a family-run, licensed cleaning and pest control company in Blacktown with 30+ years in the trade. In three months of local SEO, Google Business Profile work and 95+ branded social media post designs, its website appeared in 5,260 Google searches with an average position of 8.8, backed by a 5.0★ Google rating from 52 reviews.",
     metaTitle: "Cleaning & Pest Control Local SEO Case Study | Blacktown",
     metaDescription:
       "Local SEO, Google Business Profile and social content got a Blacktown cleaning and pest control company 5,260 Google impressions in 3 months.",
@@ -71,7 +71,7 @@ export const defaultCaseStudies: CaseStudy[] = [
       { n: "5,260", l: "Google search impressions in 3 months" },
       { n: "8.8", l: "average Google position" },
       { n: "5.0★", l: "Google rating from 52 reviews" },
-      { n: "71", l: "organic clicks from Google search" },
+      { n: "95+", l: "branded social post designs" },
     ],
     challenge:
       "Sydney Cleaning and Pest had 30 years of happy customers but very little visibility online. Carpet cleaning and pest control in Western Sydney are crowded searches, full of franchise brands and lead-selling directories. The business needed to show up when locals search for things like “carpet cleaning Blacktown” or “pest control near me”, prove its reputation with reviews, and give people a clear reason to choose a family-run team over a big name.",
@@ -82,16 +82,22 @@ export const defaultCaseStudies: CaseStudy[] = [
       "Added LocalBusiness schema, a consistent name, address and phone everywhere, and a WhatsApp “Book Now” button with quotes in under 2 hours",
       "Set up a simple review request after every job, building a 5.0★ rating from 52 Google reviews",
       "Managed the Facebook page with regular posts, offers and fast replies to customer questions",
+      "Designed 95+ branded social posts in the client’s blue and green colours, each with the phone number, website and a “Book Now” call to action",
+      "Turned real job photos into before-and-after posts for carpets, sofas, lounges, chairs, mattresses and stairs, the proof that wins cleaning jobs",
+      "Created service posts for carpet, sofa, mattress, rug, office and commercial cleaning, window cleaning and pest control, plus seasonal posts such as Diwali greetings",
       "Filmed short before-and-after videos for TikTok and Facebook Reels: carpet stains lifted, sofas refreshed, pest treatments explained",
     ],
     outcome:
-      "In the last three months the website appeared in 5,260 Google searches and earned 71 organic clicks, with an average position of 8.8, inside the top 10 results on average across its searches. Together with a 5.0★ Google rating from 52 reviews and before-and-after videos on Facebook and TikTok, Sydney Cleaning and Pest now has a local presence that turns searches into calls and WhatsApp bookings.",
+      "In the last three months the website appeared in 5,260 Google searches and earned 71 organic clicks, with an average position of 8.8, inside the top 10 results on average across its searches. Together with a 5.0★ Google rating from 52 reviews and a steady feed of 95+ branded posts and before-and-after videos on Facebook and TikTok, Sydney Cleaning and Pest now has a local presence that turns searches into calls and WhatsApp bookings.",
     testimonial: { quote: "", name: "", role: "" },
     gallery: [
       {
         src: "/case-studies/sydney-cleaning-and-pest-search-console.png",
         caption: "Google Search Console, last 3 months: 71 clicks, 5,260 impressions, average position 8.8",
       },
+      { src: "/case-studies/sydney-cleaning-and-pest-social-posts-1.jpg", caption: "Social post designs: service promos and real before-and-after job photos" },
+      { src: "/case-studies/sydney-cleaning-and-pest-social-posts-2.jpg", caption: "Branded posts for sofa, lounge, chair, mattress, rug and office carpet cleaning" },
+      { src: "/case-studies/sydney-cleaning-and-pest-social-posts-3.jpg", caption: "Pest control, window and home cleaning posts alongside before-and-after results" },
     ],
   },
   {
