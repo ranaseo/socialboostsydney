@@ -49,6 +49,14 @@ function clean(content: SiteContent): SiteContent {
     return { ...s, slug, faqs: (s.faqs || []).filter((f) => f.q?.trim()) };
   });
   content.generalFaqs = content.generalFaqs.filter((f) => f.q?.trim());
+  // Unique, URL-safe case study slugs.
+  const seenCs = new Set<string>();
+  content.caseStudies = (content.caseStudies || []).map((cs) => {
+    let slug = slugify(cs.slug || cs.title) || "case-study";
+    while (seenCs.has(slug)) slug += "-2";
+    seenCs.add(slug);
+    return { ...cs, slug, results: (cs.results || []).filter((r) => r.n?.trim() || r.l?.trim()), gallery: (cs.gallery || []).filter((g) => g.src?.trim()) };
+  });
   content.business.url = content.business.url.replace(/\/+$/, "");
   return content;
 }

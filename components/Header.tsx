@@ -16,6 +16,7 @@ export default function Header({ c }: { c: SiteContent }) {
       label: "Industries",
       groups: industryGroups.map((g) => ({ title: g.group, items: g.items.map((i) => ({ href: industryPath(i), label: i.name })) })),
     },
+    { href: "/case-studies/", label: "Case Studies" },
     { href: "/faq/", label: "FAQ" },
     { href: "/contact/", label: "Contact" },
   ];

@@ -9,6 +9,7 @@ automatically when you save in the admin panel at **`/admin`**.
 - **Business info**: name, phone, WhatsApp, email, address (NAP), hours, social links, areas, founder bio and photo.
 - **Homepage**: hero, every section heading and text, counters, feature cards, process steps, platforms strip.
 - **Services**: add, edit, reorder, delete. Each service has its own page, meta title/description, includes, FAQs, icon or image.
+- **Case studies**: add, edit, reorder, hide. Each has its own page at `/case-studies/slug/` (results, challenge, what we did, testimonial, images). Starting ones are examples: noindex until you untick "This is an example".
 - **FAQs**, **Pages & sections** (About, Services, FAQ, Contact, CTA box, header, footer, WhatsApp button).
 - **Logo & colours**, **SEO & tracking** (per-page meta, Search Console / Bing verification, AI crawler toggle,
   GA4, GTM, Meta Pixel, TikTok Pixel), **Media library**, **Backup & restore**.
