@@ -22,6 +22,7 @@ export default function Footer({ c }: { c: SiteContent }) {
           <ul>
             <li><Link href="/about/">About Us</Link></li>
             <li><Link href="/services/">Services</Link></li>
+            <li><Link href="/industries/">Businesses We Help</Link></li>
             <li><Link href="/faq/">FAQ</Link></li>
             <li><Link href="/contact/">Contact Us</Link></li>
           </ul>

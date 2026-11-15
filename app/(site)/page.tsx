@@ -10,6 +10,7 @@ import { faqGroups } from "@/lib/content";
 import { getContent } from "@/lib/getContent";
 import { faqSchema } from "@/lib/schema";
 import type { Metadata } from "next";
+import { industries, industryPath } from "@/lib/industries";
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
@@ -129,6 +130,23 @@ export default async function Home() {
           <div className="svc-grid">
             {services.map((s) => <ServiceCard key={s.slug} s={s} />)}
           </div>
+        </div>
+      </section>
+
+      {/* INDUSTRIES */}
+      <section className="sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <div>
+              <Eyebrow>Businesses we help</Eyebrow>
+              <h2>Marketing built for your industry</h2>
+            </div>
+            <p className="muted">A plumber, a dentist and an online store win customers in different ways. Pick your industry to see the plan we would run for you in Sydney.</p>
+          </div>
+          <ul className="areas ind-chips">
+            {industries.map((i) => <li key={i.slug}><Link href={industryPath(i)}>{i.name}</Link></li>)}
+            <li><Link href="/industries/">All industries →</Link></li>
+          </ul>
         </div>
       </section>
 

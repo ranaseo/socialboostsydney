@@ -9,6 +9,7 @@ export default function Header({ c }: { c: SiteContent }) {
     { href: "/", label: "Home" },
     { href: "/about/", label: "About Us" },
     { href: "/services/", label: "Services", children: c.services.map((s) => ({ href: `/services/${s.slug}/`, label: s.name })) },
+    { href: "/industries/", label: "Industries" },
     { href: "/faq/", label: "FAQ" },
     { href: "/contact/", label: "Contact" },
   ];
