@@ -101,11 +101,6 @@ export default async function CaseStudyPage({ params }: Props) {
               ))}</>}
               {cs.duration ? ` for ${cs.duration}` : ""}.
             </p>
-            {cs.website && (
-              <p className="cs-site">
-                Website: <a href={cs.website} target="_blank" rel="noopener">{cs.website.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}</a>
-              </p>
-            )}
 
             {cs.challenge && (
               <>

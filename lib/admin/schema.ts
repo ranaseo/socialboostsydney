@@ -295,7 +295,7 @@ export const adminPages: AdminPage[] = [
           { k: "title", label: "Headline (H1)", type: "text", help: "Lead with the result, e.g. “How a Parramatta clinic booked 420 new patients”." },
           { k: "slug", label: "URL slug", type: "text", help: "Lowercase letters, numbers and dashes. Changing it changes the page URL." },
           { k: "client", label: "Client name (or a description if they prefer to stay anonymous)", type: "text" },
-          { k: "website", label: "Client website (optional)", type: "url", placeholder: "https://…", help: "Shown as a link on the case study page." },
+          { k: "website", label: "Client website (optional)", type: "url", placeholder: "https://…", help: "The client name links to this site on the case study page." },
           { k: "industry", label: "Industry label", type: "text", placeholder: "Plumbing" },
           { k: "industrySlug", label: "Link to industry page", type: "select", options: industries.map((i) => i.slug) },
           { k: "location", label: "Location (suburb / area)", type: "text" },
