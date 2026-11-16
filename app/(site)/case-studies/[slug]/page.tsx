@@ -6,7 +6,7 @@ import Cta from "@/components/Cta";
 import { Arrow, Check, WhatsApp } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import PageBanner from "@/components/PageBanner";
-import { caseStudyPath, caseStudySchema, visibleCaseStudies } from "@/lib/caseStudies";
+import { caseStudyPath, caseStudySchema, customCaseStudyPages, visibleCaseStudies } from "@/lib/caseStudies";
 import { waLink } from "@/lib/content";
 import { getContent } from "@/lib/getContent";
 import { industries, industryPath } from "@/lib/industries";
@@ -18,7 +18,7 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const { caseStudies } = await getContent();
-  return visibleCaseStudies(caseStudies).map((cs) => ({ slug: cs.slug }));
+  return visibleCaseStudies(caseStudies).filter((cs) => !customCaseStudyPages.has(cs.slug)).map((cs) => ({ slug: cs.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
