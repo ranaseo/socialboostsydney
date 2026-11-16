@@ -103,6 +103,58 @@ export const defaultCaseStudies: CaseStudy[] = [
     ],
   },
   {
+    slug: "sydney-cleaning-and-pest-website-design",
+    published: true,
+    isExample: false,
+    title: "Website Design for a Sydney Cleaning & Pest Control Company: 12 Pages Built to Win Local Bookings",
+    client: "Sydney Cleaning and Pest",
+    website: "https://sydneycleaningandpest.com/",
+    industry: "Cleaning & Pest Control",
+    industrySlug: "cleaning-business-marketing-sydney",
+    location: "Blacktown, Western Sydney",
+    services: ["local-seo", "content-creation"],
+    duration: "3 months",
+    date: "2026-11-16",
+    summary:
+      "We designed and built sydneycleaningandpest.com, a 12-page WordPress website for a family-run cleaning and pest control company in Blacktown. It has a separate, search-ready page for each main service, click-to-call and WhatsApp booking on every page, live Google reviews and local SEO built in. In its first three months the new site appeared in 5,260 Google searches with an average position of 8.8.",
+    metaTitle: "Cleaning Company Website Design Case Study | Sydney",
+    metaDescription:
+      "How we designed a 12-page, mobile-first WordPress website for a Blacktown cleaning and pest control company, with service pages, WhatsApp booking and local SEO.",
+    image: "/case-studies/scp/web/web-design-cover.jpg",
+    results: [
+      { n: "12", l: "pages designed and built" },
+      { n: "7", l: "service and suburb landing pages" },
+      { n: "5,260", l: "Google search impressions in the first 3 months" },
+      { n: "8.8", l: "average Google position" },
+    ],
+    challenge:
+      "Sydney Cleaning and Pest had 30+ years of experience and happy customers, but no website that showed it. People searching for carpet cleaning or pest control in Western Sydney had nowhere to see the team’s work, read reviews or book quickly, so the business relied on word of mouth while franchise brands and directories took the searches. It needed a fast, professional site that explains each service clearly, builds trust in seconds and makes it easy to call or message from a phone.",
+    approach: [
+      "Planned the site around how customers search: one page per service instead of a single “services” list, so each page can rank for its own keyword",
+      "Designed a clean, mobile-first look in the brand’s navy, blue and green, with the logo, phone number and opening hours visible at the top of every page",
+      "Built it on WordPress with Astra Pro and Elementor Pro, so the client can update text, photos and prices without a developer",
+      "Wrote and built 7 detailed landing pages: Carpet Cleaning Sydney, Commercial Carpet Cleaning, End of Lease Carpet Cleaning, Carpet Cleaning Blacktown, Sofa & Upholstery, Mattress and Rug Cleaning",
+      "Gave every service page the same proven structure: a quick-facts table, what the service removes, the step-by-step process, pricing factors, drying times, real job photos, related services and FAQs",
+      "Added a “Book Now” button, click-to-call and WhatsApp links throughout, plus a “Get a Free Quote” form on the homepage",
+      "Showed proof up front: a live Google reviews feed (5.0★ from 52 reviews), “30+ years” and “Licensed & Insured” badges, a four-step booking explainer and a gallery of recent cleaning results",
+      "Set up Rank Math SEO with a focus keyword, title and meta description for each page, plus HouseCleaningService local business schema",
+      "Connected Google Site Kit for Search Console and Analytics, and added LiteSpeed Cache for faster loading",
+    ],
+    outcome:
+      "The website went live in July 2026 with 12 pages, including 7 service and suburb landing pages written for local search. In its first three months it appeared in 5,260 Google searches and earned 71 organic clicks, with an average position of 8.8. Every page now gives visitors a one-tap way to call, WhatsApp or request a quote, and the site is the base for the client’s ongoing local SEO and social media work.",
+    testimonial: { quote: "", name: "", role: "" },
+    gallery: [
+      { src: "/case-studies/scp/web/web-design-homepage.jpg", caption: "Homepage: clear headline, booking buttons, quote form and live Google reviews above the fold" },
+      { src: "/case-studies/scp/web/web-design-mobile.jpg", caption: "Mobile-first design: phone number, menu and booking buttons within easy reach" },
+      { src: "/case-studies/scp/web/web-design-service-page.jpg", caption: "Service landing page (Carpet Cleaning Sydney): quick facts, process and real job photos" },
+      { src: "/case-studies/scp/web/web-design-services-results.jpg", caption: "Service sections, areas served, four-step booking and recent cleaning results" },
+      {
+        src: "/case-studies/sydney-cleaning-and-pest-search-console.png",
+        caption: "Google Search Console, first 3 months: 71 clicks, 5,260 impressions, average position 8.8",
+      },
+    ],
+  },
+  {
     slug: "inner-west-plumber-local-seo",
     published: true,
     isExample: true,
