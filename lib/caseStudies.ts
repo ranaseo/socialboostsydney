@@ -334,3 +334,6 @@ export function caseStudiesHubSchema(c: SchemaCtx, list: CaseStudy[], name: stri
     },
   };
 }
+
+/** Case studies with their own hand-built page under app/(site)/case-studies/<slug>/. */
+export const customCaseStudyPages = new Set(["sydney-cleaning-and-pest-local-seo-social-media"]);
