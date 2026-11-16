@@ -203,6 +203,53 @@ export const defaultCaseStudies: CaseStudy[] = [
     ],
   },
   {
+    slug: "indian-ethnic-wear-ecommerce-website-design",
+    published: true,
+    isExample: false,
+    title: "E-commerce Website Design for Indian Ethnic Wear: A Premium Online Store for a Blacktown Fashion Retailer",
+    client: "Indian Ethnic Wear",
+    website: "https://ethnicwear.com.au/",
+    industry: "Fashion & E-commerce",
+    industrySlug: "ecommerce-marketing-sydney",
+    location: "Blacktown, Sydney",
+    services: ["ecommerce-seo", "content-creation"],
+    duration: "Website design & build",
+    date: "2026-11-16",
+    summary:
+      "We designed and built ethnicwear.com.au, a premium WooCommerce store for an Indian fashion retailer in Blacktown. It brings 121 products across 21 categories for women, men, teens and kids into one elegant, mobile-friendly storefront, with department mega menus, detailed product pages, customer accounts, order tracking and an SEO-ready URL structure.",
+    metaTitle: "E-commerce Website Design Case Study: Indian Ethnic Wear Sydney",
+    metaDescription:
+      "How ethnicwear.com.au was designed and built as an elegant, mobile-friendly WooCommerce store for an Indian fashion retailer in Blacktown, Sydney.",
+    image: "/case-studies/iew-web/cover.jpg",
+    results: [
+      { n: "121", l: "products in the online catalogue" },
+      { n: "21", l: "product categories" },
+      { n: "5", l: "mega-menu departments" },
+      { n: "3", l: "device layouts: desktop, tablet, mobile" },
+    ],
+    challenge:
+      "Indian Ethnic Wear sells a wide range of traditional fashion from its Blacktown store, from salwar kameez, sharara and palazzo suits to sarees, lehengas, men’s kurtas and kids’ wear. With so many collections, shoppers needed a clear way to browse online, see the detail in each outfit and order from anywhere in Australia, while local customers still needed to find the shop, its hours and a quick way to ask a question.",
+    approach: [
+      "Designed a premium storefront in the brand’s gold and ink, with large imagery so the clothing leads",
+      "Built department mega menus for Men, Women, Teens, Kids and Diwali that pair category lists with featured new arrivals",
+      "Organised the catalogue into 21 product categories with clean /product-category/ and /product/ URLs",
+      "Designed product pages with an image gallery, AUD pricing, size selection, a size guide, a product details table and related products",
+      "Set up the shop page with sidebar filters, consistent product cards and sale badges",
+      "Added the full set of store pages: cart, checkout, My Account, registration, wishlist, track order, shipping, returns, FAQ and blog",
+      "Made every layout responsive, with a bottom shopping bar (Menu, Shop, Home, Cart, Account) on mobile",
+      "Connected online and in-store with a contact page showing the Blacktown address, hours, phone, email and WhatsApp",
+      "Built on WordPress, WooCommerce and Elementor, with Rank Math managing titles and meta descriptions",
+    ],
+    outcome:
+      "Indian Ethnic Wear now has one centralised online storefront where every collection, policy and contact detail lives in a single branded store. Shoppers browse by department and category on any device, and the clean URL structure and metadata give the store an SEO-friendly foundation for search and campaigns. No traffic, sales or conversion figures are published.",
+    testimonial: { quote: "", name: "", role: "" },
+    gallery: [
+      { src: "/case-studies/iew-web/home-desktop.jpg", caption: "Homepage on desktop" },
+      { src: "/case-studies/iew-web/mega-menu.jpg", caption: "Women mega menu with categories and new arrivals" },
+      { src: "/case-studies/iew-web/product-desktop.jpg", caption: "Product page with gallery, price and size guide" },
+    ],
+  },
+  {
     slug: "inner-west-plumber-local-seo",
     published: true,
     isExample: true,
@@ -436,4 +483,4 @@ export function caseStudiesHubSchema(c: SchemaCtx, list: CaseStudy[], name: stri
 }
 
 /** Case studies with their own hand-built page under app/(site)/case-studies/<slug>/. */
-export const customCaseStudyPages = new Set(["sydney-cleaning-and-pest-local-seo-social-media", "indian-ethnic-wear-digital-marketing"]);
+export const customCaseStudyPages = new Set(["sydney-cleaning-and-pest-local-seo-social-media", "indian-ethnic-wear-digital-marketing", "indian-ethnic-wear-ecommerce-website-design"]);
