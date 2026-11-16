@@ -155,6 +155,54 @@ export const defaultCaseStudies: CaseStudy[] = [
     ],
   },
   {
+    slug: "indian-ethnic-wear-digital-marketing",
+    published: true,
+    isExample: false,
+    title: "Growing an Indian Ethnic Fashion Brand in Sydney Through E-commerce SEO, Social Media and Paid Ads",
+    client: "Indian Ethnic Wear",
+    website: "https://ethnicwear.com.au/",
+    industry: "Fashion & E-commerce",
+    industrySlug: "ecommerce-marketing-sydney",
+    location: "Blacktown, Sydney",
+    services: ["ecommerce-seo", "social-media-management", "content-creation", "facebook-instagram-ads"],
+    duration: "16 months",
+    date: "2026-11-16",
+    summary:
+      "Indian Ethnic Wear is an ethnic fashion e-commerce store in Blacktown, Sydney, selling salwar kameez, silk suits, kurti sets, sharara and palazzo suits, sarees, lehengas, men’s kurtas, Nehru jackets and kids’ ethnic wear. We run its e-commerce SEO, social media marketing, content creation and paid advertising. Google Search Console reports 335 clicks, 10.7K impressions, a 3.1% CTR and an average position of 14.1 over the selected 16-month period.",
+    metaTitle: "Indian Ethnic Wear Case Study | E-commerce SEO & Social Media Sydney",
+    metaDescription:
+      "How Social Boost Sydney grows an Indian ethnic fashion e-commerce store in Blacktown with e-commerce SEO, social media content and paid ads. Verified Search Console data.",
+    image: "/case-studies/iew/web-cover.jpg",
+    results: [
+      { n: "335", l: "Google clicks (Search Console, 16 months)" },
+      { n: "10.7K", l: "Google search impressions" },
+      { n: "3.1%", l: "average click-through rate" },
+      { n: "14.1", l: "average Google position" },
+    ],
+    challenge:
+      "Indian ethnic fashion in Australia is a competitive online market, with large Indian marketplaces, Melbourne and Sydney boutiques and Instagram sellers all targeting the same festive, wedding and everyday shoppers. Indian Ethnic Wear needed its product and category pages to be found for searches like “Indian ethnic wear Sydney” and “salwar kameez Australia”, a social presence that shows new collections and festive drops, and paid campaigns that bring the right shoppers to the store.",
+    approach: [
+      "Keyword research around buyer searches: Indian Ethnic Wear Sydney, Salwar Kameez Australia, Kurti Online Sydney, lehenga, sharara and men’s kurta terms",
+      "On-page SEO for product and category pages: product titles, meta descriptions, heading structure, internal linking and rewritten product descriptions",
+      "Technical SEO: mobile optimisation, indexing, page performance, crawlability and structured data opportunities for products",
+      "Local SEO for Blacktown, Sydney and Western Sydney, including Google Business Profile optimisation and local keyword targeting",
+      "Image SEO: product image optimisation, descriptive filenames and alt text across the catalogue",
+      "Social media content creation: Facebook and Instagram post designs, new collection announcements, product promos, festive and Diwali campaigns and reels concepts",
+      "Social media marketing across Facebook, Instagram, TikTok and YouTube with a platform-specific content format for each",
+      "Paid advertising and performance marketing: brand awareness, website traffic, sales and conversion, remarketing, seasonal promotions and new collection launches",
+      "An e-commerce growth framework with four pillars: organic search, social media, paid advertising and on-site conversion",
+    ],
+    outcome:
+      "Over the 16-month period selected in Google Search Console, the store recorded 335 clicks and 10.7K impressions from Google Search, with an average CTR of 3.1% and an average position of 14.1. Other business growth and advertising results require additional analytics verification and are not published here.",
+    testimonial: { quote: "", name: "", role: "" },
+    gallery: [
+      { src: "/case-studies/iew/search-console-16-months.jpg", caption: "Google Search Console, 16 months: 335 clicks, 10.7K impressions, 3.1% CTR, average position 14.1" },
+      { src: "/case-studies/iew/social-creatives-1.jpg", caption: "Facebook and Instagram post designs: readymade kurti sets, sharara suits and new arrivals" },
+      { src: "/case-studies/iew/social-creatives-2.jpg", caption: "Product showcase creatives for women’s suits, men’s kurtas and lehengas" },
+      { src: "/case-studies/iew/social-creatives-3.jpg", caption: "Diwali promotional graphics, new collection announcements and reels covers" },
+    ],
+  },
+  {
     slug: "inner-west-plumber-local-seo",
     published: true,
     isExample: true,
@@ -388,4 +436,4 @@ export function caseStudiesHubSchema(c: SchemaCtx, list: CaseStudy[], name: stri
 }
 
 /** Case studies with their own hand-built page under app/(site)/case-studies/<slug>/. */
-export const customCaseStudyPages = new Set(["sydney-cleaning-and-pest-local-seo-social-media"]);
+export const customCaseStudyPages = new Set(["sydney-cleaning-and-pest-local-seo-social-media", "indian-ethnic-wear-digital-marketing"]);
