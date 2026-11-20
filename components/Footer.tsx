@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { waLink, type SiteContent } from "@/lib/content";
-import { hostLabel } from "./Header";
+import { hostLabel, socialName } from "./Header";
 
 export default function Footer({ c }: { c: SiteContent }) {
   const site = c.business;
@@ -13,19 +13,19 @@ export default function Footer({ c }: { c: SiteContent }) {
           <div className="f-social">
             {site.sameAs.map((u) => {
               const n = hostLabel(u);
-              return <a key={u} href={u} rel="noopener" aria-label={n}>{n.slice(0, 2).toUpperCase()}</a>;
+              return <a key={u} href={u} rel="noopener">{socialName(n)}</a>;
             })}
           </div>
         </div>
         <div>
           <h2 className="fh">Company</h2>
           <ul>
-            <li><Link href="/about/">About Us</Link></li>
+            <li><Link href="/about/">About us</Link></li>
             <li><Link href="/services/">Services</Link></li>
-            <li><Link href="/industries/">Businesses We Help</Link></li>
-            <li><Link href="/case-studies/">Case Studies</Link></li>
+            <li><Link href="/industries/">Businesses we help</Link></li>
+            <li><Link href="/case-studies/">Case studies</Link></li>
             <li><Link href="/faq/">FAQ</Link></li>
-            <li><Link href="/contact/">Contact Us</Link></li>
+            <li><Link href="/contact/">Contact</Link></li>
           </ul>
         </div>
         <div>

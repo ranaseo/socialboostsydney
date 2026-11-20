@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { waLink, type SiteContent } from "@/lib/content";
 import { industryGroups, industryPath } from "@/lib/industries";
+import { ChevronDown, Mail, MapPin, Menu } from "lucide-react";
 import { WhatsApp } from "./Icons";
 
 export default function Header({ c }: { c: SiteContent }) {
@@ -9,14 +10,14 @@ export default function Header({ c }: { c: SiteContent }) {
   type Item = { href: string; label: string };
   const nav: (Item & { children?: Item[]; groups?: { title: string; items: Item[] }[] })[] = [
     { href: "/", label: "Home" },
-    { href: "/about/", label: "About Us" },
+    { href: "/about/", label: "About" },
     { href: "/services/", label: "Services", children: c.services.map((s) => ({ href: `/services/${s.slug}/`, label: s.name })) },
     {
       href: "/industries/",
       label: "Industries",
       groups: industryGroups.map((g) => ({ title: g.group, items: g.items.map((i) => ({ href: industryPath(i), label: i.name })) })),
     },
-    { href: "/case-studies/", label: "Case Studies" },
+    { href: "/case-studies/", label: "Case studies" },
     { href: "/faq/", label: "FAQ" },
     { href: "/contact/", label: "Contact" },
   ];
@@ -24,14 +25,14 @@ export default function Header({ c }: { c: SiteContent }) {
     <>
       <div className="topbar">
         <div className="wrap topbar-in">
-          <span className="hide-sm">✉ <a href={`mailto:${site.email}`}>{site.email}</a></span>
+          <span className="hide-sm tb-item"><Mail size={14} strokeWidth={1.75} aria-hidden="true" /> <a href={`mailto:${site.email}`}>{site.email}</a></span>
           <span><a href={wa} target="_blank" rel="noopener" className="top-wa"><WhatsApp size={14} /> {site.phoneDisplay}</a></span>
           <span className="hide-md">{site.hoursShort}</span>
-          <span className="hide-sm">📍 {site.locationShort}</span>
+          <span className="hide-sm tb-item"><MapPin size={14} strokeWidth={1.75} aria-hidden="true" /> {site.locationShort}</span>
           <span className="top-social">
             {site.sameAs.map((u) => {
-              const n = hostLabel(u).replace("www.", "").split(".")[0];
-              return <a key={u} href={u} rel="noopener" aria-label={n}>{n.slice(0, 2).toUpperCase()}</a>;
+              const n = hostLabel(u);
+              return <a key={u} href={u} rel="noopener">{socialName(n)}</a>;
             })}
           </span>
         </div>
@@ -45,7 +46,7 @@ export default function Header({ c }: { c: SiteContent }) {
             <ul className="nav">
               {nav.map((n) => (
                 <li key={n.href} className={n.groups ? "has-sub has-mega" : n.children ? "has-sub" : undefined}>
-                  <Link href={n.href}>{n.label}{(n.children || n.groups) && <span className="caret">▾</span>}</Link>
+                  <Link href={n.href}>{n.label}{(n.children || n.groups) && <ChevronDown className="caret" size={14} strokeWidth={2} aria-hidden="true" />}</Link>
                   {n.groups && (
                     <div className="sub-menu mega">
                       <div className="mega-cols">
@@ -56,7 +57,7 @@ export default function Header({ c }: { c: SiteContent }) {
                           </div>
                         ))}
                       </div>
-                      <Link href={n.href} className="mega-all">View all businesses we help →</Link>
+                      <Link href={n.href} className="mega-all">All businesses we help</Link>
                     </div>
                   )}
                   {n.children && (
@@ -74,7 +75,7 @@ export default function Header({ c }: { c: SiteContent }) {
           </a>
           <Link href={c.header.ctaHref} className="btn btn-yellow header-cta">{c.header.ctaLabel}</Link>
           <details className="mnav">
-            <summary aria-label="Menu">☰</summary>
+            <summary aria-label="Menu"><Menu size={22} strokeWidth={1.75} aria-hidden="true" /></summary>
             <ul>
               {nav.map((n) => (
                 <li key={n.href}>
@@ -109,3 +110,6 @@ export function hostLabel(u: string) {
     return "link";
   }
 }
+
+const socialNames: Record<string, string> = { facebook: "Facebook", instagram: "Instagram", linkedin: "LinkedIn", tiktok: "TikTok", youtube: "YouTube", x: "X", twitter: "X" };
+export const socialName = (n: string) => socialNames[n] || n.charAt(0).toUpperCase() + n.slice(1);

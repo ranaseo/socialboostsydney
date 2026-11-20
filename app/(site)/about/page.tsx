@@ -37,9 +37,8 @@ export default async function About() {
           <Eyebrow>{a.beliefsEyebrow}</Eyebrow>
           <h2>{a.beliefsTitle}</h2>
           <div className="feat-grid flush">
-            {features.map((f, i) => (
+            {features.map((f) => (
               <div key={f.t} className="feat">
-                <span className="feat-n">{String(i + 1).padStart(2, "0")}</span>
                 <h3>{f.t}</h3>
                 <p>{f.d}</p>
               </div>

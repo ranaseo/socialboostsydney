@@ -160,7 +160,6 @@ export default async function CaseStudyPage({ params }: Props) {
 
           <aside className="detail-side">
             <div className="side-cta">
-              <img src={c.brand.iconPlain} alt="" width={64} height={64} />
               <h2 className="side-h">Want results like these?</h2>
               <p>{c.servicesPage.sidebarTitle}</p>
               <a href={waLink(site.whatsapp, `Hi, I read your case study "${cs.title}" and want similar results.`)} target="_blank" rel="noopener" className="side-phone"><WhatsApp size={22} /> {site.phoneDisplay}</a>
