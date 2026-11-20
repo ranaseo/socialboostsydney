@@ -6,7 +6,7 @@
 export const site = {
   name: "Social Boost Sydney",
   legalName: "Social Boost Sydney",
-  url: "https://socialboostsydney.com.au",
+  url: "https://www.socialboostsydney.com.au", // the live domain redirects the bare domain to www
   tagline: "Social media marketing agency in Sydney",
   description:
     "Social Boost Sydney is a social media marketing agency in Sydney, NSW. We manage Instagram, Facebook, TikTok and LinkedIn, run paid social ads, create short-form video content and grow local and ecommerce businesses with SEO.",
