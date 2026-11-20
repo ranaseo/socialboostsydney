@@ -124,3 +124,51 @@ export function landingServiceSchema(
     mainEntityOfPage: `${u}${p.path}`,
   };
 }
+
+// Industry landing pages: a Service aimed at a business audience, plus a
+// WebPage with author and dateModified so engines can judge freshness.
+export function industrySchema(
+  c: SiteContent,
+  i: { slug: string; name: string; h1: string; title: string; answer: string; primaryKeyword: string },
+  updated: string,
+) {
+  const u = c.business.url;
+  const url = `${u}/industries/${i.slug}/`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `${url}#service`,
+        name: i.h1,
+        serviceType: `Digital marketing for ${i.name.toLowerCase()}`,
+        description: i.answer,
+        provider: { "@id": `${u}/#organization` },
+        areaServed: { "@type": "City", name: c.business.address.addressLocality },
+        audience: { "@type": "BusinessAudience", name: i.name },
+        url,
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: i.title,
+        description: i.answer,
+        inLanguage: "en-AU",
+        isPartOf: { "@id": `${u}/#website` },
+        about: { "@id": `${url}#service` },
+        author: { "@type": "Person", name: c.business.founder, worksFor: { "@id": `${u}/#organization` } },
+        dateModified: updated,
+      },
+    ],
+  };
+}
+
+export function itemListSchema(baseUrl: string, name: string, items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: items.map((it, n) => ({ "@type": "ListItem", position: n + 1, name: it.name, url: `${baseUrl}${it.path}` })),
+  };
+}

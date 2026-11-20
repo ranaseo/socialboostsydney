@@ -11,6 +11,9 @@ import { getContent } from "@/lib/getContent";
 import { faqSchema } from "@/lib/schema";
 import { keywordLinks } from "@/lib/seoPages";
 import type { Metadata } from "next";
+import { industries, industryPath } from "@/lib/industries";
+import CaseStudyCard from "@/components/CaseStudyCard";
+import { visibleCaseStudies } from "@/lib/caseStudies";
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
@@ -21,6 +24,8 @@ export default async function Home() {
   const c = await getContent();
   const { features, generalFaqs, platforms, services, stats, steps, home: h } = c;
   const site = c.business;
+  const cases = visibleCaseStudies(c.caseStudies).slice(0, 3);
+  const cp = c.caseStudiesPage;
   return (
     <>
       {generalFaqs.length > 0 && <JsonLd data={faqSchema(generalFaqs)} />}
@@ -136,6 +141,42 @@ export default async function Home() {
           </ul>
         </div>
       </section>
+
+      {/* INDUSTRIES */}
+      <section className="sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <div>
+              <Eyebrow>Businesses we help</Eyebrow>
+              <h2>Marketing built for your industry</h2>
+            </div>
+            <p className="muted">A plumber, a dentist and an online store win customers in different ways. Pick your industry to see the plan we would run for you in Sydney.</p>
+          </div>
+          <ul className="areas ind-chips">
+            {industries.map((i) => <li key={i.slug}><Link href={industryPath(i)}>{i.name}</Link></li>)}
+            <li><Link href="/industries/">All industries →</Link></li>
+          </ul>
+        </div>
+      </section>
+
+      {/* CASE STUDIES */}
+      {cases.length > 0 && (
+        <section className="sec sec-soft">
+          <div className="wrap">
+            <div className="sec-head">
+              <div>
+                <Eyebrow>{cp.homeEyebrow}</Eyebrow>
+                <h2>{cp.homeTitle}</h2>
+              </div>
+              <p className="muted">{cp.homeText}</p>
+            </div>
+            <div className="cs-grid">
+              {cases.map((cs) => <CaseStudyCard key={cs.slug} cs={cs} cta={cp.cardCta} exampleLabel={cp.exampleLabel} />)}
+            </div>
+            <p className="cs-home-foot"><Link href="/case-studies/" className="btn btn-dark">All case studies</Link></p>
+          </div>
+        </section>
+      )}
 
       {/* PROCESS */}
       <section className="sec sec-dark">

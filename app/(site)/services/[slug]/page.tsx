@@ -11,6 +11,7 @@ import { faqSchema, serviceSchema } from "@/lib/schema";
 import { waLink } from "@/lib/content";
 import { getContent } from "@/lib/getContent";
 import { seoPages, serviceGuides } from "@/lib/seoPages";
+import { caseStudyPath, visibleCaseStudies } from "@/lib/caseStudies";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -104,10 +105,27 @@ export default async function ServicePage({ params }: Props) {
               <a href={waLink(site.whatsapp, `Hi, I need help with ${s.name}.`)} target="_blank" rel="noopener" className="side-phone"><WhatsApp size={22} /> {site.phoneDisplay}</a>
               <Link href={c.header.ctaHref} className="btn btn-dark">{c.header.ctaLabel}</Link>
             </div>
+            <CaseStudyLinks list={visibleCaseStudies(c.caseStudies).filter((cs) => cs.services.includes(s.slug))} />
           </aside>
         </div>
       </section>
       <Cta c={c} />
     </>
+  );
+}
+
+// Case studies that used this service (internal links for users and crawlers).
+function CaseStudyLinks({ list }: { list: { slug: string; title: string; results: { n: string; l: string }[] }[] }) {
+  if (!list.length) return null;
+  return (
+    <div className="side-box">
+      <h2 className="side-h">Case studies</h2>
+      <ul className="side-list">
+        {list.slice(0, 3).map((cs) => (
+          <li key={cs.slug}><Link href={caseStudyPath(cs)}>{cs.results[0] ? `${cs.results[0].n} ${cs.results[0].l}` : cs.title} <Arrow /></Link></li>
+        ))}
+        <li><Link href="/case-studies/">All case studies <Arrow /></Link></li>
+      </ul>
+    </div>
   );
 }
