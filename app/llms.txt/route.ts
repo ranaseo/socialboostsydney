@@ -1,4 +1,5 @@
 import { getContent } from "@/lib/getContent";
+import { seoPages } from "@/lib/seoPages";
 import { industries, industryPath } from "@/lib/industries";
 import { caseStudyPath, indexableCaseStudies } from "@/lib/caseStudies";
 
@@ -23,6 +24,10 @@ export async function GET() {
 ## Services
 
 ${c.services.map((s) => `- [${s.name}](${site.url}/services/${s.slug}/): ${s.short} ${s.priceFrom}.`).join("\n")}
+
+## Specialist and local pages
+
+${seoPages.map((p) => `- [${p.keyword}](${site.url}/${p.slug}/): ${p.metaDescription}`).join("\n")}
 
 ## Industries we help
 

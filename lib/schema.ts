@@ -90,6 +90,41 @@ export function breadcrumbSchema(baseUrl: string, items: { name: string; path: s
   };
 }
 
+// Service offered in one area (or Sydney-wide), for keyword landing pages.
+export function landingServiceSchema(
+  c: SiteContent,
+  p: { path: string; name: string; serviceType: string; description: string; area?: { name: string; postcode: string; council: string } },
+) {
+  const b = c.business;
+  const u = b.url;
+  const areaServed = p.area
+    ? {
+        "@type": "Place",
+        name: `${p.area.name} NSW ${p.area.postcode}`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: p.area.name,
+          addressRegion: b.address.addressRegion,
+          postalCode: p.area.postcode,
+          addressCountry: "AU",
+        },
+        containedInPlace: { "@type": "City", name: b.address.addressLocality },
+      }
+    : { "@type": "City", name: b.address.addressLocality };
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${u}${p.path}#service`,
+    name: p.name,
+    serviceType: p.serviceType,
+    description: p.description,
+    provider: { "@id": `${u}/#organization` },
+    areaServed,
+    url: `${u}${p.path}`,
+    mainEntityOfPage: `${u}${p.path}`,
+  };
+}
+
 // Industry landing pages: a Service aimed at a business audience, plus a
 // WebPage with author and dateModified so engines can judge freshness.
 export function industrySchema(

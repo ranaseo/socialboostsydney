@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getContent } from "@/lib/getContent";
+import { seoPages } from "@/lib/seoPages";
 import { industries, industryPath } from "@/lib/industries";
 import { caseStudyPath, indexableCaseStudies } from "@/lib/caseStudies";
 
@@ -9,10 +10,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const paths = ["/", "/services/", "/about/", "/faq/", "/contact/", ...c.services.map((s) => `/services/${s.slug}/`), "/industries/", ...industries.map(industryPath)];
   // Example (placeholder) case studies are noindex, so only real ones are listed.
   paths.push("/case-studies/", ...indexableCaseStudies(c.caseStudies).map(caseStudyPath));
+  paths.push(...seoPages.map((p) => `/${p.slug}/`));
   return paths.map((p) => ({
     url: `${c.business.url}${p}`,
     lastModified: now,
     changeFrequency: "monthly",
-    priority: p === "/" ? 1 : p.startsWith("/services/") || p.startsWith("/industries/") || p.startsWith("/case-studies/") ? 0.8 : 0.6,
+    priority: p === "/" ? 1 : p.startsWith("/services/") || p.startsWith("/industries/") || p.startsWith("/case-studies/") || seoPages.some((x) => p === `/${x.slug}/`) ? 0.8 : 0.6,
   }));
 }
