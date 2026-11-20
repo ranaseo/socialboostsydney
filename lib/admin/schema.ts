@@ -498,8 +498,8 @@ export const adminPages: AdminPage[] = [
       {
         key: "notifications",
         title: "Lead alerts",
-        help: "Get an email for every new lead. Needs RESEND_API_KEY set in Vercel (free at resend.com).",
-        fields: [{ k: "leadEmail", label: "Send new leads to this email", type: "email" }],
+        help: "Get an email for every new lead from the contact and free-audit forms. Needs RESEND_API_KEY set in Vercel (free at resend.com). Leave empty to use NOTIFY_EMAIL from Vercel. Use the Send test email button on the Dashboard to check it works.",
+        fields: [{ k: "leadEmail", label: "Send new leads to this email (comma-separate for several)", type: "text" }],
       },
     ],
   },

@@ -5,7 +5,8 @@ import { revalidatePath, revalidateTag } from "next/cache";
 import { checkPassword, createSessionToken, SESSION_COOKIE, SESSION_DAYS, adminConfigured } from "@/lib/auth";
 import { deepMerge, defaultContent, sectionKeys, type SectionKey, type SiteContent } from "@/lib/content";
 import { deleteLead, kvGet, kvSet, updateLead, type LeadStatus } from "@/lib/db";
-import { CONTENT_KEY, CONTENT_TAG } from "@/lib/getContent";
+import { CONTENT_KEY, CONTENT_TAG, readStoredContent } from "@/lib/getContent";
+import { leadAlertRecipient, sendLeadAlert } from "@/lib/notify";
 import { deleteMedia } from "@/lib/media";
 import { isAdmin, requireAdmin } from "@/lib/session";
 
@@ -145,4 +146,17 @@ export async function removeMedia(url: string): Promise<ActionResult> {
   } catch (e) {
     return { ok: false, error: (e as Error).message };
   }
+}
+
+/* ---------- lead email alerts ---------- */
+export async function sendTestLeadEmail(): Promise<ActionResult & { to?: string }> {
+  await requireAdmin();
+  const c = await readStoredContent();
+  const r = await sendLeadAlert(
+    { name: "Test Lead", email: "test@example.com", phone: "0400 000 000", service: "Social Media Management", website: "https://instagram.com/example", message: "This is a test message from the admin panel.", source: "Admin test" },
+    c,
+    { test: true },
+  );
+  if (r.ok) return { ok: true, to: leadAlertRecipient(c) };
+  return { ok: false, error: r.skipped || r.error };
 }

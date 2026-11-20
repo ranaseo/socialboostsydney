@@ -21,7 +21,10 @@ automatically when you save in the admin panel at **`/admin`**.
 3. **Environment variables** (Settings → Environment Variables):
    - `ADMIN_PASSWORD`: your admin login password (use a long one)
    - `AUTH_SECRET`: any long random string (e.g. from `openssl rand -base64 32`)
-   - optional `RESEND_API_KEY` (+ `LEAD_FROM_EMAIL`) for new-lead email alerts via resend.com
+   - `RESEND_API_KEY` and `NOTIFY_EMAIL`: email alert for every new lead via resend.com (free plan is enough).
+     Without a verified domain, Resend only delivers to the address the Resend account was created with,
+     so sign up to Resend with the same email as `NOTIFY_EMAIL`. Optional `LEAD_FROM_EMAIL` once a domain is verified.
+     The admin Dashboard has a **Send test email** button; the address can also be changed in SEO & tracking → Lead alerts.
 4. Redeploy, then open `https://socialboostsydney.com.au/admin/`.
 
 If a Vercel project setting has **Output Directory = `out`** from the old static export, clear it.
