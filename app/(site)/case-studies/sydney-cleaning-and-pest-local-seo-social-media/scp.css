@@ -57,7 +57,7 @@
 
 /* animated background blobs */
 .scp-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.scp-bg i { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; animation: scp-float 18s ease-in-out infinite; }
+.scp-bg i { display: none; }
 .scp-bg i:nth-child(1) { width: 420px; height: 420px; background: #cfe3ff; top: -120px; right: 8%; }
 .scp-bg i:nth-child(2) { width: 300px; height: 300px; background: #d4f5e6; bottom: -80px; left: -60px; animation-delay: -6s; }
 .scp-bg i:nth-child(3) { width: 220px; height: 220px; background: #e4ecff; top: 40%; left: 40%; animation-delay: -12s; }
@@ -80,7 +80,7 @@
 .scp-hero-img { position: relative; border-radius: 32px; overflow: hidden; box-shadow: var(--scp-shadow); aspect-ratio: 4/4.6; max-width: 480px; margin-left: auto; }
 .scp-hero-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(11,27,58,.35)); }
 .scp-hero-img img { width: 100%; height: 100%; object-fit: cover; }
-.scp-float { position: absolute; display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); border: 1px solid rgba(227,233,242,.9); border-radius: 18px; padding: 12px 16px 12px 12px; box-shadow: var(--scp-shadow); animation: scp-bob 6s ease-in-out infinite; }
+.scp-float { position: absolute; display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); border: 1px solid rgba(227,233,242,.9); border-radius: 18px; padding: 12px 16px 12px 12px; box-shadow: var(--scp-shadow); }
 .scp-float span { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--scp-blue), var(--scp-sky)); color: #fff; flex: none; }
 .scp-float b { display: block; font-size: .9rem; color: var(--scp-ink); }
 .scp-float small { color: #7a879c; font-weight: 600; font-size: .76rem; }

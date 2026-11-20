@@ -67,7 +67,7 @@
 .wd-hero-stage { position: relative; padding: 10px 60px 50px 0; }
 .wd-hero-stage .wd-browser { transform: perspective(1800px) rotateY(-6deg) rotateX(2deg); transform-origin: left center; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
 .wd-hero-stage:hover .wd-browser { transform: none; }
-.wd-hero-stage .wd-phone { position: absolute; right: 0; bottom: 0; width: 34%; max-width: 210px; animation: scp-bob 7s ease-in-out infinite; }
+.wd-hero-stage .wd-phone { position: absolute; right: 0; bottom: 0; width: 34%; max-width: 210px; }
 .wd-hero-chip { position: absolute; z-index: 3; left: -18px; bottom: 26px; display: flex; align-items: center; gap: 10px; background: rgba(16, 24, 40, .92); color: #fff; border-radius: 16px; padding: 12px 16px; box-shadow: var(--scp-shadow); backdrop-filter: blur(8px); }
 .wd-hero-chip span { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: linear-gradient(135deg, var(--wd-gold), var(--wd-gold-2)); color: #101828; }
 .wd-hero-chip b { display: block; font-size: .86rem; }

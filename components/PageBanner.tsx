@@ -5,7 +5,6 @@ type Props = { title: string; lead: React.ReactNode; crumbs: { name: string; pat
 export default function PageBanner({ title, lead, crumbs, children }: Props) {
   return (
     <section className="banner">
-      <div className="banner-shape" aria-hidden="true" />
       <div className="wrap banner-in">
         <Breadcrumbs items={crumbs} />
         <h1>{title}</h1>

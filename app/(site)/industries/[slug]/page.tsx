@@ -121,7 +121,6 @@ export default async function IndustryPage({ params }: Props) {
               </div>
             )}
             <div className="side-cta">
-              <img src={c.brand.iconPlain} alt="" width={64} height={64} />
               <h2 className="side-h">Free audit for {lower}</h2>
               <p>{c.servicesPage.sidebarTitle}</p>
               <a href={waLink(site.whatsapp, `Hi, I run a business in this industry: ${i.name}. I'd like a free audit.`)} target="_blank" rel="noopener" className="side-phone"><WhatsApp size={22} /> {site.phoneDisplay}</a>
