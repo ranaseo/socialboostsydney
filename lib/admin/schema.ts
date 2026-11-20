@@ -142,6 +142,9 @@ export const adminPages: AdminPage[] = [
           link("secondaryCta", "Second button"),
           { k: "heroPoints", label: "Tick points", type: "list" },
           { k: "marqueeTitle", label: "Platforms strip title", type: "text" },
+          { k: "heroPhoto", label: "Hero photo (real job or client photo)", type: "image" },
+          { k: "heroPhotoAlt", label: "Hero photo description (alt text)", type: "text" },
+          { k: "heroProofCase", label: "Case study shown in the hero (its slug)", type: "text", help: "The first gallery image of this case study (e.g. a Search Console screenshot) sits over the hero photo. Leave empty to hide it." },
         ],
       },
       {

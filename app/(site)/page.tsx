@@ -4,7 +4,7 @@ import Eyebrow from "@/components/Eyebrow";
 import FaqTabs from "@/components/FaqTabs";
 import JsonLd from "@/components/JsonLd";
 import ServiceCard from "@/components/ServiceCard";
-import { Check } from "@/components/Icons";
+import { Arrow, Check } from "@/components/Icons";
 import FounderAvatar from "@/components/FounderAvatar";
 import { faqGroups } from "@/lib/content";
 import { getContent } from "@/lib/getContent";
@@ -13,7 +13,7 @@ import { keywordLinks } from "@/lib/seoPages";
 import type { Metadata } from "next";
 import { industries, industryPath } from "@/lib/industries";
 import CaseStudyCard from "@/components/CaseStudyCard";
-import { visibleCaseStudies } from "@/lib/caseStudies";
+import { caseStudyPath, visibleCaseStudies } from "@/lib/caseStudies";
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
@@ -26,13 +26,14 @@ export default async function Home() {
   const site = c.business;
   const cases = visibleCaseStudies(c.caseStudies).slice(0, 3);
   const cp = c.caseStudiesPage;
+  const proof = h.heroProofCase ? visibleCaseStudies(c.caseStudies).find((cs) => cs.slug === h.heroProofCase) : undefined;
+  const proofShot = proof?.gallery[0];
   return (
     <>
       {generalFaqs.length > 0 && <JsonLd data={faqSchema(generalFaqs)} />}
 
       {/* HERO */}
       <section className="hero">
-        <div className="hero-grid-bg" aria-hidden="true" />
         <div className="wrap hero-in">
           <div className="hero-copy">
             <Eyebrow>{h.eyebrow}</Eyebrow>
@@ -50,61 +51,41 @@ export default async function Home() {
             </ul>
           </div>
 
-          <div className="hero-visual" aria-hidden="true">
-            <div className="blob" />
-            <div className="ring" />
-            <div className="phone">
-              <div className="ph-notch" />
-              <div className="post-head">
-                <img src={c.brand.icon} alt="" width={34} height={34} />
-                <div><b>socialboostsydney</b><small>Sponsored · Sydney</small></div>
-              </div>
-              <div className="post-img">
-                <svg viewBox="0 0 200 140" width="100%" height="100%">
-                  <rect width="200" height="140" fill="#16171D" />
-                  {[22, 38, 30, 56, 48, 74, 92].map((h, i) => (
-                    <rect key={i} x={18 + i * 25} y={120 - h} width="14" height={h} rx="3" fill={i === 6 ? "#FFE500" : "#3a3b44"} />
-                  ))}
-                  <path d="M20 96 L60 80 L100 86 L140 52 L180 24" stroke="#FFE500" strokeWidth="4" fill="none" strokeLinecap="round" />
-                  <path d="M168 20 L184 22 L180 38" stroke="#FFE500" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <div className="post-actions"><span>♥</span><span>💬</span><span>↗</span><span className="save">🔖</span></div>
-              <div className="post-lines"><i /><i /><i className="short" /></div>
-              <div className="post-btn">Book now</div>
-            </div>
-            <div className="float f1"><span className="fi">🔔</span><div><b>New enquiry</b><small>from Meta lead ad</small></div></div>
-            <div className="float f2"><span className="fi y">▶</span><div><b>Reel published</b><small>Instagram + TikTok</small></div></div>
-            <div className="float f3"><span className="fi">📍</span><div><b>Google Maps</b><small>Profile optimised</small></div></div>
-          </div>
+          {(h.heroPhoto || proof) && (
+            <figure className="hero-proof">
+              {h.heroPhoto && <img className="hp-photo" src={h.heroPhoto} alt={h.heroPhotoAlt} width={825} height={1100} />}
+              {proof && proofShot && (
+                <Link href={caseStudyPath(proof)} className="hp-card">
+                  <img src={proofShot.src} alt={proofShot.caption} width={1536} height={600} />
+                  <figcaption>
+                    <span className="hp-client">{proof.client}{proof.location ? `, ${proof.location.split(",")[0]}` : ""}</span>
+                    <span className="hp-note">{proofShot.caption}</span>
+                    <span className="hp-more">Read the case study <Arrow /></span>
+                  </figcaption>
+                </Link>
+              )}
+            </figure>
+          )}
         </div>
       </section>
 
-      {/* PLATFORM MARQUEE */}
-      <section className="marquee" aria-label="Platforms we work with">
-        <p className="marquee-title">{h.marqueeTitle}</p>
-        <div className="marquee-track">
-          {[...platforms, ...platforms].map((p, i) => (
-            <span key={i} aria-hidden={i >= platforms.length}>{p}<em>✦</em></span>
-          ))}
+      {/* PLATFORMS */}
+      <section className="platforms" aria-label="Platforms we work with">
+        <div className="wrap platforms-in">
+          <p className="platforms-title">{h.marqueeTitle}</p>
+          <ul>{platforms.map((p) => <li key={p}>{p}</li>)}</ul>
         </div>
       </section>
 
       {/* ABOUT */}
       <section className="sec">
         <div className="wrap about">
-          <div className="about-visual" aria-hidden="true">
-            <div className="av-card">
-              <img src={c.brand.icon} alt="" width={200} height={200} />
-              {["IG", "FB", "TT", "G", "in"].map((t, i) => <span key={t} className={`orb o${i}`}>{t}</span>)}
-            </div>
-            {stats[0] && <div className="av-badge"><b>{stats[0].n}</b><span>{stats[0].l}</span></div>}
-            <div className="av-dots" />
-          </div>
           <div>
             <Eyebrow>{h.aboutEyebrow}</Eyebrow>
             <h2>{h.aboutTitle}</h2>
-            <p className="muted">{h.aboutText}</p>
+          </div>
+          <div>
+            <p className="about-text">{h.aboutText}</p>
             <dl className="counters">
               {stats.map((s) => <div key={s.l}><dt>{s.l}</dt><dd>{s.n}</dd></div>)}
             </dl>
@@ -112,9 +93,8 @@ export default async function Home() {
           </div>
         </div>
         <div className="wrap feat-grid">
-          {features.map((f, i) => (
+          {features.map((f) => (
             <div key={f.t} className="feat">
-              <span className="feat-n">{String(i + 1).padStart(2, "0")}</span>
               <h3>{f.t}</h3>
               <p>{f.d}</p>
             </div>
@@ -148,13 +128,13 @@ export default async function Home() {
           <div className="sec-head">
             <div>
               <Eyebrow>Businesses we help</Eyebrow>
-              <h2>Marketing built for your industry</h2>
+              <h2>Find your industry</h2>
             </div>
-            <p className="muted">A plumber, a dentist and an online store win customers in different ways. Pick your industry to see the plan we would run for you in Sydney.</p>
+            <p className="muted">A plumber, a dentist and an online store win customers in different ways. Pick yours to see the plan we would run for you in Sydney.</p>
           </div>
           <ul className="areas ind-chips">
             {industries.map((i) => <li key={i.slug}><Link href={industryPath(i)}>{i.name}</Link></li>)}
-            <li><Link href="/industries/">All industries →</Link></li>
+            <li><Link href="/industries/">All industries</Link></li>
           </ul>
         </div>
       </section>
@@ -181,7 +161,7 @@ export default async function Home() {
       {/* PROCESS */}
       <section className="sec sec-dark">
         <div className="wrap">
-          <div className="sec-head center">
+          <div className="sec-head">
             <div>
               <Eyebrow>{h.processEyebrow}</Eyebrow>
               <h2>{h.processTitle}</h2>
@@ -190,7 +170,7 @@ export default async function Home() {
           <ol className="process">
             {steps.map((s, i) => (
               <li key={s.t}>
-                <span className="p-num">{String(i + 1).padStart(2, "0")}</span>
+                <span className="p-num">Step {i + 1}</span>
                 <h3>{s.t}</h3>
                 <p>{s.d}</p>
               </li>

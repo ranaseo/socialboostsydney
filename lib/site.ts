@@ -265,23 +265,22 @@ export const generalFaqs: Faq[] = [
 ];
 
 export const steps = [
-  { t: "Free audit", d: "We review your profiles, ads and competitors and show you the quick wins." },
-  { t: "Strategy", d: "A 90-day plan with goals, platforms, content pillars and budget." },
-  { t: "Create & launch", d: "We shoot, design, write and publish, and launch ads with tracking." },
-  { t: "Report & grow", d: "Monthly reports in plain English and a call to plan the next month." },
+  { t: "Free audit", d: "We go through your profiles, ads, Google listing and a few competitors, and point out what is worth fixing first." },
+  { t: "A 90-day plan", d: "Goals, which platforms to focus on, what we will post and how much to spend on ads." },
+  { t: "Shoot, post and launch", d: "We film, design, write and publish, and switch on ads once tracking is working." },
+  { t: "Monthly report", d: "A short report in plain English, then a call to agree what changes next month." },
 ];
 
 // Founder track record (from Al Rubel Rana's own work, used in the About counters)
 export const stats = [
   { n: "5,000+", l: "Keywords ranked" },
   { n: "20,000+", l: "Leads generated" },
-  { n: "6", l: "Growth services" },
 ];
 
 export const features = [
-  { t: "Data-driven decisions", d: "Every campaign is tracked to calls, forms and sales with Meta Pixel, Conversions API and GA4." },
-  { t: "Social + search together", d: "Social content, Google Business Profile and SEO pages work as one system for Google and AI search." },
-  { t: "Sydney local team", d: "We shoot content on location across Sydney and know the suburbs your customers live in." },
+  { t: "Tracked to real enquiries", d: "Calls, forms and sales are tracked with Meta Pixel, Conversions API and GA4, so you can see which posts and ads paid for themselves." },
+  { t: "Social and search in one plan", d: "Your posts, Google Business Profile and website pages back each other up, on Google and in AI answers." },
+  { t: "We are in Sydney", d: "We shoot on location across Sydney and know the suburbs your customers actually live in." },
 ];
 
 export const platforms = ["Instagram", "Facebook", "TikTok", "Google", "LinkedIn", "YouTube", "Shopify", "WooCommerce", "Meta Ads", "Google Business Profile"];

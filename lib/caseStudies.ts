@@ -38,8 +38,8 @@ export const caseStudiesPageDefaults = {
     "These case studies show how Social Boost Sydney uses SEO, social media management and paid ads to win Sydney businesses more calls, bookings and sales. Each one covers the problem, what we did, and the numbers that changed.",
   cardCta: "Read the case study",
   homeEyebrow: "Case studies",
-  homeTitle: "Real results for Sydney businesses",
-  homeText: "Rankings, leads and sales we have helped local and online businesses win. Open a case study to see exactly what we did.",
+  homeTitle: "Recent work for Sydney businesses",
+  homeText: "Search figures come from each client’s own Google Search Console. Every study lists what we did, step by step.",
   exampleLabel: "Example",
 };
 

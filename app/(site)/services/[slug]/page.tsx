@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Cta from "@/components/Cta";
 import FaqList from "@/components/FaqList";
-import { Arrow, Check, WhatsApp, serviceIcon } from "@/components/Icons";
+import { Arrow, Check, WhatsApp } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import { LongForm, RelatedLinks } from "@/components/LongForm";
 import PageBanner from "@/components/PageBanner";
@@ -60,14 +60,7 @@ export default async function ServicePage({ params }: Props) {
       <section className="sec">
         <div className="wrap detail">
           <article className="detail-main">
-            {s.image ? (
-              <img src={s.image} alt={s.name} className="detail-img" width={1200} height={630} />
-            ) : (
-              <div className="detail-hero" aria-hidden="true">
-                <span className="dh-ico">{serviceIcon(s)}</span>
-                <img src={c.brand.icon} alt="" width={140} height={140} />
-              </div>
-            )}
+            {s.image && <img src={s.image} alt={s.name} className="detail-img" width={1200} height={630} />}
             {g && <LongForm sections={g.sections} />}
             <h2>What’s included</h2>
             <ul className="ticks">{s.includes.map((i) => <li key={i}><Check /> {i}</li>)}</ul>
@@ -75,7 +68,7 @@ export default async function ServicePage({ params }: Props) {
             <ul className="areas">{s.forWho.map((i) => <li key={i}>{i}</li>)}</ul>
             <h2>How it works</h2>
             <ol className="mini-steps">
-              {steps.map((st, i) => <li key={st.t}><b>{String(i + 1).padStart(2, "0")}. {st.t}</b> {st.d}</li>)}
+              {steps.map((st, i) => <li key={st.t}><b>{i + 1}. {st.t}.</b> {st.d}</li>)}
             </ol>
             {faqs.length > 0 && (
               <>
@@ -99,7 +92,6 @@ export default async function ServicePage({ params }: Props) {
             </div>
             {related.length > 0 && <RelatedLinks paths={related} names={Object.fromEntries(services.map((o) => [`/services/${o.slug}/`, o.name]))} />}
             <div className="side-cta">
-              <img src={c.brand.iconPlain} alt="" width={64} height={64} />
               <h2 className="side-h">Need help with {s.name}?</h2>
               <p>{c.servicesPage.sidebarTitle}</p>
               <a href={waLink(site.whatsapp, `Hi, I need help with ${s.name}.`)} target="_blank" rel="noopener" className="side-phone"><WhatsApp size={22} /> {site.phoneDisplay}</a>
