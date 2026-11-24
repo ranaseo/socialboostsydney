@@ -111,13 +111,9 @@ export const adminPages: AdminPage[] = [
       },
       {
         key: "business",
-        title: "Founder (E-E-A-T)",
+        title: "Founder",
         fields: [
           { k: "founder", label: "Founder name", type: "text" },
-          { k: "founderRole", label: "Role line", type: "text" },
-          { k: "founderBio", label: "Bio", type: "textarea", rows: 5 },
-          { k: "founderPhoto", label: "Photo (optional)", type: "image", help: "If empty, the initials badge is shown." },
-          { k: "founderInitials", label: "Initials badge", type: "text" },
         ],
       },
     ],
@@ -369,7 +365,11 @@ export const adminPages: AdminPage[] = [
         fields: [
           { k: "bannerTitle", label: "Page heading", type: "text" },
           { k: "bannerLead", label: "Intro paragraph", type: "textarea", rows: 3 },
-          { k: "founderEyebrow", label: "Founder label", type: "text" },
+          { k: "storyEyebrow", label: "Who we are — label", type: "text" },
+          { k: "storyTitle", label: "Who we are — heading", type: "text" },
+          { k: "storyText", label: "Who we are — text", type: "textarea", rows: 4 },
+          { k: "servicesLabel", label: "Services links — heading", type: "text" },
+          link("storyButton", "Who we are — button"),
           { k: "beliefsEyebrow", label: "Beliefs label", type: "text" },
           { k: "beliefsTitle", label: "Beliefs heading", type: "text" },
           { k: "beliefsPoints", label: "Beliefs tick points", type: "list" },

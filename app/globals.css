@@ -183,10 +183,12 @@ p { margin: 0 0 1em; }
 .areas { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0 0 24px; }
 .areas li { background: var(--soft); border-radius: 8px; padding: 6px 12px; font-weight: 500; font-size: .875rem; }
 
-/* founder */
-.founder { display: grid; grid-template-columns: 300px 1fr; gap: 64px; align-items: center; }
-.f-avatar { aspect-ratio: 1; border-radius: var(--r); background: var(--ink); color: var(--yellow); display: grid; place-items: center; font-size: 4.5rem; font-weight: 600; letter-spacing: -.03em; }
-.role { font-weight: 500; color: var(--grey); margin-top: -4px; }
+/* about story */
+.counters-2 { grid-template-columns: 1fr 1fr; }
+.story-svc { margin-top: 40px; }
+.story-svc h3 { font-size: 1rem; color: var(--grey); font-weight: 600; margin: 0; }
+.story-svc .kw-links { margin-top: 16px; }
+.kw-links.on-white a { background: var(--soft); border-color: transparent; }
 
 /* faq */
 .faq-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: start; }
@@ -275,7 +277,7 @@ p { margin: 0 0 1em; }
 @media (max-width: 960px) {
   .nav-wrap, .header-cta { display: none; }
   .mnav { display: block; }
-  .hero-in, .about, .why-in, .founder, .faq-wrap, .detail, .cta-box, .contact { grid-template-columns: 1fr; }
+  .hero-in, .about, .why-in, .faq-wrap, .detail, .cta-box, .contact { grid-template-columns: 1fr; }
   .hero { padding: 64px 0; }
   .hero-in { gap: 48px; }
   .hero-proof { max-width: 520px; padding: 0; }
@@ -286,8 +288,6 @@ p { margin: 0 0 1em; }
   .about { gap: 24px; }
   .feat-grid { grid-template-columns: 1fr; gap: 24px; margin-top: 48px; }
   .process { grid-template-columns: 1fr 1fr; }
-  .founder { gap: 32px; }
-  .f-avatar { max-width: 220px; }
   .detail-side { position: static; }
   .cta-box { padding: 36px 24px; border-radius: 16px; }
   .sec + .cta-sec { padding-top: 72px; }
@@ -323,8 +323,6 @@ p { margin: 0 0 1em; }
   .svc { padding: 24px 20px; }
   .areas-card { padding: 24px; }
   .why-in { gap: 32px; }
-  .founder { gap: 24px; }
-  .f-avatar { max-width: 140px; font-size: 2.75rem; }
   .faq details { padding: 0 16px; }
   .faq summary { padding: 16px 0; }
   .faq summary h3 { font-size: .9375rem; }

@@ -30,11 +30,6 @@ export const defaultContent = {
       "Answer engine optimisation",
       "Generative engine optimisation",
     ],
-    founderRole: "Founder, SEO and social media",
-    founderInitials: "AR",
-    founderPhoto: "",
-    founderBio:
-      "Al Rubel Rana is an SEO specialist and social media manager. He has ranked more than 5,000 keywords and brought in over 20,000 leads for clients through SEO, Meta ads and social campaigns. He also trains business owners and marketers, so if you want to understand what we are doing and why, he will happily walk you through it.",
   },
   brand: {
     logo: "/brand/logo-horizontal-primary.svg",
@@ -96,7 +91,12 @@ export const defaultContent = {
     bannerTitle: "About Social Boost Sydney",
     bannerLead:
       "Social Boost Sydney is a social media marketing agency based in Sydney, NSW, founded by digital marketer Al Rubel Rana. We help local and online businesses turn social media and search into a steady flow of enquiries.",
-    founderEyebrow: "Our founder",
+    storyEyebrow: "Who we are",
+    storyTitle: "A Sydney agency that measures success in enquiries",
+    storyText:
+      "We help local and online businesses get more calls, bookings and sales from social media and search. Content, ads and SEO are planned and run by one team, every enquiry is tracked, and you get a plain-English report each month showing what worked and what changes next.",
+    servicesLabel: "What we look after",
+    storyButton: { label: "See our case studies", href: "/case-studies/" } as Link,
     beliefsEyebrow: "How we work",
     beliefsTitle: "A few rules we stick to",
     beliefsPoints: [
