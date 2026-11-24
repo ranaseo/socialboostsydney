@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Cta from "@/components/Cta";
 import Eyebrow from "@/components/Eyebrow";
-import FounderAvatar from "@/components/FounderAvatar";
 import { Check } from "@/components/Icons";
 import PageBanner from "@/components/PageBanner";
 import { getContent } from "@/lib/getContent";
@@ -13,23 +13,34 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function About() {
   const c = await getContent();
-  const { about: a, business: site, stats, features } = c;
+  const { about: a, business: site, stats, features, services } = c;
+  const counters = [
+    ...stats,
+    { n: String(services.length), l: "Services in-house" },
+    { n: `${site.areas.length}+`, l: "Sydney areas served" },
+  ];
   return (
     <>
       <PageBanner title={a.bannerTitle} crumbs={[{ name: "About", path: "/about/" }]} lead={a.bannerLead} />
       <section className="sec">
-        <div className="wrap founder">
-          <FounderAvatar b={site} />
+        <div className="wrap about">
           <div>
-            <Eyebrow>{a.founderEyebrow}</Eyebrow>
-            <h2>{site.founder}</h2>
-            <p className="role">{site.founderRole}</p>
-            {/* E-E-A-T: a real, named expert with verifiable experience */}
-            <p className="muted">{site.founderBio}</p>
-            <dl className="counters">
-              {stats.map((s) => <div key={s.l}><dt>{s.l}</dt><dd>{s.n}</dd></div>)}
-            </dl>
+            <Eyebrow>{a.storyEyebrow}</Eyebrow>
+            <h2>{a.storyTitle}</h2>
           </div>
+          <div>
+            <p className="about-text">{a.storyText}</p>
+            <dl className="counters counters-2">
+              {counters.map((s) => <div key={s.l}><dt>{s.l}</dt><dd>{s.n}</dd></div>)}
+            </dl>
+            <Link href={a.storyButton.href} className="btn btn-dark">{a.storyButton.label}</Link>
+          </div>
+        </div>
+        <div className="wrap story-svc">
+          <h3>{a.servicesLabel}</h3>
+          <ul className="kw-links on-white">
+            {services.map((s) => <li key={s.slug}><Link href={`/services/${s.slug}/`}>{s.name}</Link></li>)}
+          </ul>
         </div>
       </section>
       <section className="sec sec-soft">

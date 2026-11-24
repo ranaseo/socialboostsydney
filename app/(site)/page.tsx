@@ -5,7 +5,6 @@ import FaqTabs from "@/components/FaqTabs";
 import JsonLd from "@/components/JsonLd";
 import ServiceCard from "@/components/ServiceCard";
 import { Arrow, Check } from "@/components/Icons";
-import FounderAvatar from "@/components/FounderAvatar";
 import { faqGroups } from "@/lib/content";
 import { getContent } from "@/lib/getContent";
 import { faqSchema } from "@/lib/schema";
@@ -193,22 +192,6 @@ export default async function Home() {
             <h3>{h.areasTitle}</h3>
             <ul className="areas">{site.areas.map((a) => <li key={a}>{a}</li>)}</ul>
             <p className="small">{h.areasNote}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* FOUNDER */}
-      <section className="sec">
-        <div className="wrap founder">
-          <FounderAvatar b={site} />
-          <div>
-            <Eyebrow>{h.founderEyebrow}</Eyebrow>
-            <h2>{site.founder}</h2>
-            <p className="role">{site.founderRole}</p>
-            <p className="muted">{site.founderBio}</p>
-            <ul className="chips-dark">
-              {site.founderSkills.map((k) => <li key={k}>{k}</li>)}
-            </ul>
           </div>
         </div>
       </section>
