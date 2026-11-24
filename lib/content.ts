@@ -35,7 +35,6 @@ export const defaultContent = {
     founderPhoto: "",
     founderBio:
       "Al Rubel Rana is an SEO specialist and social media manager. He has ranked more than 5,000 keywords and brought in over 20,000 leads for clients through SEO, Meta ads and social campaigns. He also trains business owners and marketers, so if you want to understand what we are doing and why, he will happily walk you through it.",
-    founderSkills: ["SEO", "Meta Ads", "Branding", "Canva & design", "Training"],
   },
   brand: {
     logo: "/brand/logo-horizontal-primary.svg",
@@ -89,7 +88,6 @@ export const defaultContent = {
     ],
     areasTitle: "Areas we serve",
     areasNote: "Plus remote clients Australia-wide.",
-    founderEyebrow: "Who you will deal with",
     faqEyebrow: "FAQ",
     faqTitle: "Questions we get before people sign up",
     faqText: "Costs, contracts, how long things take and who owns what.",

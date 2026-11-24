@@ -187,8 +187,6 @@ p { margin: 0 0 1em; }
 .founder { display: grid; grid-template-columns: 300px 1fr; gap: 64px; align-items: center; }
 .f-avatar { aspect-ratio: 1; border-radius: var(--r); background: var(--ink); color: var(--yellow); display: grid; place-items: center; font-size: 4.5rem; font-weight: 600; letter-spacing: -.03em; }
 .role { font-weight: 500; color: var(--grey); margin-top: -4px; }
-.chips-dark { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 20px 0 0; }
-.chips-dark li { border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; font-weight: 500; font-size: .875rem; color: var(--text-2); }
 
 /* faq */
 .faq-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: start; }
